@@ -14,6 +14,7 @@ import { FaqSection } from "./faq-section";
 import { HeroSection } from "./hero-section";
 import { OptionsSection } from "./options-section";
 import { ProjectsSection } from "./projects-section";
+import { TemplatesSection } from "./templates-section";
 
 export function HomePage() {
   const reducedMotion = usePrefersReducedMotion();
@@ -87,6 +88,7 @@ export function HomePage() {
 
           <ProjectsSection />
           <OptionsSection />
+          <TemplatesSection />
           <FaqSection />
           <CollaborateSection />
           <CustomWebsiteCtaSection />
