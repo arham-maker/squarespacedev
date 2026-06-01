@@ -339,7 +339,7 @@
     display: flex;
     width: max-content;
     will-change: transform;
-    animation: marquee-topbar-scroll 30s linear infinite;
+    animation: marquee-topbar-scroll 70s linear infinite;
   }
 
   .marquee-topbar__group {
