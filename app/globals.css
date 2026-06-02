@@ -1144,26 +1144,21 @@ html.lenis body {
 
   .text-work-hero-subtitle {
     width: 100%;
-    max-width: 36rem;
     margin-top: 0.75rem;
-    font-size: clamp(1.125rem, 3.5vw, 1.5rem);
+    font-size: clamp(1.25rem, 4vw, 2rem);
     font-weight: 400;
-    line-height: 1.35;
+    line-height: 1.2;
     color: #000000;
     text-align: center;
     text-wrap: balance;
   }
 
-  @media (min-width: 768px) {
-    .text-work-hero-subtitle {
-      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    }
-  }
-
   @media (min-width: 1025px) {
     .text-work-hero-subtitle {
       margin-top: 1rem;
-      font-size: clamp(1.5rem, 2vw, 2rem);
+      font-size: 50px;
+      font-weight: 400;
+      line-height: 60px;
     }
   }
 
@@ -1175,7 +1170,7 @@ html.lenis body {
 
   @media (min-width: 1025px) {
     .work-inner-banner__cta {
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
   }
 
