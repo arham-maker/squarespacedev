@@ -20,7 +20,7 @@ export const WHY_CHOOSE_FEATURES = [
 ] as const;
 
 export const WHY_CHOOSE = {
-  titleLines: ["Why Choose", "Squarespacemasters"],
+  titleLines: ["Why Choose", "Squarespacedev"],
   image: "/home/whychoose.webp",
   cta: { label: "Get Started", href: "#contact" },
 } as const;

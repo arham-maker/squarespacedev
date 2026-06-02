@@ -76,7 +76,7 @@ export function WhyChooseSection() {
       ref={sectionRef}
       id="why-choose"
       className="section-padding relative z-20 bg-why-choose text-black"
-      aria-label="Why Choose Squarespacemasters"
+      aria-label="Why Choose Squarespacedev"
     >
       <Container>
         <h2

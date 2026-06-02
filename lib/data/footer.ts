@@ -1,5 +1,5 @@
 export const FOOTER_DISCLAIMER =
-  'Squarespacemasters is an independent company that provides design and development services for e-commerce solutions. We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Squarespace, or any of its subsidiaries or affiliates. The name "Squarespace" as well as related names, marks, emblems, and images are registered trademarks of their respective owners.';
+  'Squarespacedev is an independent company that provides design and development services for e-commerce solutions. We are not affiliated, associated, authorized, endorsed by, or in any way officially connected with Squarespace, or any of its subsidiaries or affiliates. The name "Squarespace" as well as related names, marks, emblems, and images are registered trademarks of their respective owners.';
 
 export const FOOTER_DESCRIPTION =
   "We create stunning, user-friendly Squarespace websites that boost your brand and engage your audience effectively.";
@@ -7,7 +7,8 @@ export const FOOTER_DESCRIPTION =
 export const FOOTER_QUICK_LINKS = [
   { label: "Home", href: "/" },
   { label: "Our Portfolio", href: "#portfolio" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "Our Pricing", href: "/our-pricing" },
+  { label: "Contact Us", href: "/contact" },
 ] as const;
 
 export const FOOTER_SERVICES_LEFT = [
