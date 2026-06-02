@@ -87,17 +87,14 @@ export function PricingPlansSection() {
   return (
     <section ref={sectionRef} className="pricing-plans-section" id="pricing">
       <Container>
-        <div className="pricing-plans-section__intro text-center">
-          <h2
+        <div className="pricing-plans-section__intro">
+          <h4
             data-pricing-intro-reveal
-            className="text-pricing-intro-title m-0"
+            className="text-pricing-intro-title"
           >
             {PRICING_INTRO.title}
-          </h2>
-          <p
-            data-pricing-intro-reveal
-            className="text-pricing-intro-desc mx-auto m-0 mt-4 max-w-[720px]"
-          >
+          </h4>
+          <p data-pricing-intro-reveal className="text-pricing-intro-desc">
             {PRICING_INTRO.description}
           </p>
         </div>

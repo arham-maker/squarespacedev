@@ -37,19 +37,17 @@ export function ContactFormSection() {
             aria-label="Trusted partners"
           >
             {CONTACT_PARTNER_LOGOS.map((logo) => (
-              <figure key={logo.id} className="contact-partners__item m-0">
+              <figure
+                key={logo.id}
+                className={`contact-partners__item contact-partners__item--${logo.id} m-0`}
+              >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   width={logo.width}
                   height={logo.height}
                   className="contact-partners__logo"
-                  style={{
-                    width: logo.width,
-                    height: logo.height,
-                    maxWidth: "100%",
-                  }}
-                  sizes={`${logo.width}px`}
+                  sizes="(max-width: 640px) 85vw, (max-width: 1024px) 40vw, 210px"
                   priority
                 />
               </figure>

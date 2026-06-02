@@ -8,22 +8,22 @@ export const CONTACT_PARTNER_LOGOS = [
     id: "upcity",
     src: "/contact/partners/upcity.png",
     alt: "Featured on UpCity",
-    width: 292 ,
-    height: 126 ,
+    width: 210,
+    height: 50,
   },
   {
     id: "hudsonville",
     src: "/contact/partners/hudsonville.png",
     alt: "Hudsonville Area Chamber of Commerce",
-    width: 256,
-    height: 161,
+    width: 197,
+    height: 66,
   },
   {
     id: "fort-myers",
     src: "/contact/partners/fort-myers.png",
     alt: "Greater Fort Myers Chamber of Commerce",
-    width: 	128 ,
-    height: 139,
+    width: 91,
+    height: 114,
   },
 ] as const;
 
