@@ -34,7 +34,7 @@ export function TermsContentSection() {
     <section ref={sectionRef} className="terms-content-section">
       <Container>
         <div className="terms-content">
-          <h4 data-terms-reveal className="terms-content__page-title m-0">
+          <h4 data-terms-reveal className="terms-content__page-title mb-4">
             {TERMS_PAGE_TITLE}
           </h4>
 
@@ -43,7 +43,7 @@ export function TermsContentSection() {
           ))}
 
           <article data-terms-reveal className="terms-content__block" id="claim-refund">
-            <h5 className="terms-content__section-title m-0">CLAIM YOUR REFUND</h5>
+            <h5 className="terms-content__section-title mb-4">CLAIM YOUR REFUND</h5>
             <p className="terms-content__text m-0">{TERMS_CLAIM_INTRO}</p>
             <ul className="terms-content__list m-0 list-disc ps-5">
               {TERMS_CLAIM_ITEMS.map((item) => (
@@ -91,7 +91,7 @@ function TermsBlock({ block }: { block: (typeof TERMS_SECTIONS)[number] }) {
       className="terms-content__block"
       id={block.id}
     >
-      <h5 className="terms-content__section-title m-0">{block.title}</h5>
+      <h5 className="terms-content__section-title mb-4">{block.title}</h5>
 
       {block.paragraphs?.map((paragraph) => (
         <p key={paragraph.slice(0, 40)} className="terms-content__text m-0">

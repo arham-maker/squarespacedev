@@ -1014,22 +1014,27 @@ html.with-fancybox .mouse-cursor {
   }
 
   .terms-content {
-    max-width: 900px;
+    width: 100%;
+    max-width: 1250px;
     margin-inline: auto;
   }
 
   .terms-content__page-title {
-    margin-bottom: 2rem;
-    font-size: clamp(1.375rem, 3.5vw, 1.75rem);
+    margin-top: 0;
+    margin-inline: 0;
+    padding: 0 0 12px;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: clamp(1.75rem, 5vw, 2.875rem);
     font-weight: 700;
-    line-height: 1.3;
-    color: #000000;
+    font-style: normal;
+    line-height: 1.2;
+    color: #141516;
   }
 
   @media (min-width: 1025px) {
     .terms-content__page-title {
-      margin-bottom: 2.5rem;
-      font-size: 1.75rem;
+      font-size: 46px;
+      line-height: 1.2;
     }
   }
 
@@ -1044,22 +1049,38 @@ html.with-fancybox .mouse-cursor {
   }
 
   .terms-content__section-title {
-    margin-bottom: 1.25rem;
-    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    margin-top: 0;
+    margin-inline: 0;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: clamp(1.25rem, 4vw, 2.25rem);
     font-weight: 700;
-    line-height: 1.3;
-    color: #000000;
+    font-style: normal;
+    line-height: 1.2;
+    color: #141516;
     text-transform: uppercase;
     letter-spacing: 0.01em;
   }
 
+  @media (min-width: 1025px) {
+    .terms-content__section-title {
+      font-size: 36px;
+      line-height: 1.2;
+    }
+  }
+
   .terms-content__text {
     margin-bottom: 1rem;
-    font-size: clamp(0.9375rem, 2.5vw, 1rem);
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
     font-weight: 400;
     line-height: 1.67;
     color: #000000;
     text-wrap: pretty;
+  }
+
+  @media (min-width: 1025px) {
+    .terms-content__text {
+      font-size: 22px;
+    }
   }
 
   .terms-content__text:last-child,
@@ -1071,15 +1092,26 @@ html.with-fancybox .mouse-cursor {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0;
+  }
+
+  .terms-content__list-item:last-child {
+    margin-bottom: 0;
   }
 
   .terms-content__list-item {
-    font-size: clamp(0.9375rem, 2.5vw, 1rem);
+    margin-bottom: 0.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
     font-weight: 400;
     line-height: 1.67;
     color: #000000;
     text-wrap: pretty;
+  }
+
+  @media (min-width: 1025px) {
+    .terms-content__list-item {
+      font-size: 22px;
+    }
   }
 
   .terms-content__link {

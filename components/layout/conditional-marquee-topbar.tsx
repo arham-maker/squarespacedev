@@ -11,7 +11,8 @@ export function ConditionalMarqueeTopbar() {
     pathname === "/contact" ||
     pathname === "/our-pricing" ||
     pathname === "/our-work" ||
-    pathname === "/terms-and-conditions"
+    pathname === "/terms-and-conditions" ||
+    pathname === "/privacy-policy"
   ) {
     return null;
   }

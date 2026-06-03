@@ -33,5 +33,5 @@ export const CONTACT_FORM = {
     "Whether you have questions or need support, we're here to help you every step of the way. Complete the form below, and we promise to respond within 24 hours.",
   submitLabel: "Submit",
   termsHref: "/terms-and-conditions",
-  privacyHref: "/privacy",
+  privacyHref: "/privacy-policy",
 } as const;
