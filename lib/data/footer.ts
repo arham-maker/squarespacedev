@@ -24,7 +24,7 @@ export const FOOTER_SERVICES_RIGHT = [
   { label: "Graphic Design", href: "/graphic-design" },
   { label: "Email & Hosting", href: "/email-hosting" },
   { label: "Advertising Services", href: "/advertising" },
-  "Your All-in-One",
+  { label: "Your All-in-One", href: "/your-all-in-one" },
   "Social Media",
 ] as const;
 
