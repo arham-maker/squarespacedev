@@ -17,7 +17,7 @@ export const NAV_LINKS = [
 export const SERVICE_LINKS = [
   { label: "Digital Marketing", href: "/digital-marketing" },
   { label: "Logo Design", href: "/logo-design" },
-  { label: "Web Design", href: "#services" },
+  { label: "Web Design", href: "/web-design" },
   { label: "Branding", href: "#services" },
   { label: "Graphic Design", href: "#services" },
   { label: "Email & Hosting", href: "#services" },

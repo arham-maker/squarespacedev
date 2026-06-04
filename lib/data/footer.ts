@@ -11,7 +11,7 @@ export const FOOTER_QUICK_LINKS = [
 ] as const;
 
 export const FOOTER_SERVICES_LEFT = [
-  "Web Design",
+  { label: "Web Design", href: "/web-design" },
   "Graphic Design",
   "Social Media",
   "Branding",

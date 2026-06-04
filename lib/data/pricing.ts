@@ -11,7 +11,6 @@ export const PRICING_INTRO = {
 export const PRICING_TABS = [
   { id: "promotional", label: "Promotional Website" },
   { id: "ecommerce", label: "E-Commerce Website" },
-  { id: "redesign", label: "Redesign" },
 ] as const;
 
 export type PricingTabId = (typeof PRICING_TABS)[number]["id"];
@@ -229,92 +228,9 @@ const ecommercePlans: PricingPlan[] = [
   },
 ];
 
-const redesignPlans: PricingPlan[] = [
-  {
-    id: "quick-refresh",
-    title: "Quick Refresh",
-    price: "$249",
-    originalPrice: "$1245",
-    discount: "80% Off",
-    description: "Fast visual refresh. Real designer at work.",
-    features: ["Redesign 2 Pages", "Modern Layout", "CTA Improvements"],
-  },
-  {
-    id: "modern-makeover",
-    title: "Modern Makeover",
-    price: "$449",
-    originalPrice: "$2245",
-    discount: "80% Off",
-    description: "Two options + one winner — modern & conversion-friendly.",
-    features: [
-      "Everything in Quick Refresh, plus:",
-      "Redesign 4 Pages",
-      "Navigation & Layout Cleanup",
-      "Mobile + Tablet Optimized",
-    ],
-  },
-  {
-    id: "conversion-reset",
-    title: "Conversion Reset",
-    price: "$749",
-    originalPrice: "$3745",
-    discount: "80% Off",
-    description: "Designer + UX expert team for measurable results.",
-    features: [
-      "Everything in Modern Makeover, plus:",
-      "Redesign 6 Pages",
-      "Lead Capture Forms & CTA Strategy",
-      "Speed Optimization",
-    ],
-  },
-  {
-    id: "redesign-pro",
-    title: "Redesign Pro",
-    price: "$1149",
-    originalPrice: "$5745",
-    discount: "80% Off",
-    description: "Strategic redesign for professional impact.",
-    features: [
-      "Everything in Conversion Reset, plus:",
-      "Redesign Up to 10 Pages",
-      "Conversion-Focused UX",
-      "Speed & Performance Optimization",
-      "Analytics Setup",
-    ],
-  },
-  {
-    id: "brand-reinvention",
-    title: "Brand Reinvention",
-    price: "$1699",
-    originalPrice: "$8495",
-    discount: "80% Off",
-    description: "Full redesign for maximum authority & credibility.",
-    features: [
-      "Everything in Redesign Pro, plus:",
-      "Up to 12 Pages",
-      "Advanced UX Funnels & Custom Branding",
-    ],
-  },
-  {
-    id: "digital-domination",
-    title: "Digital Domination",
-    price: "$2399",
-    originalPrice: "$11995",
-    discount: "80% Off",
-    description: "Elite-level redesign. White-glove service.",
-    features: [
-      "Everything in Brand Reinvention, plus:",
-      "Unlimited Pages",
-      "Full UX/UI Overhaul + CRO Strategy",
-      "Dedicated Project Manager",
-    ],
-  },
-];
-
 export const PRICING_PLANS: Record<PricingTabId, PricingPlan[]> = {
   promotional: promotionalPlans,
   ecommerce: ecommercePlans,
-  redesign: redesignPlans,
 };
 
 export const PRICING_TRUSTED_PARTNERS = {

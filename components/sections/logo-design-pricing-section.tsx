@@ -99,7 +99,7 @@ export function LogoDesignPricingSection() {
           >
             {LOGO_DESIGN_PRICING_INTRO.title}
           </h4>
-          <p data-ld-pricing-intro-reveal className="text-pricing-intro-desc">
+          <p data-ld-pricing-intro-reveal className="text-pricing-intro-desc mb-10">
             {LOGO_DESIGN_PRICING_INTRO.description}
           </p>
         </div>
