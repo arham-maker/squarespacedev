@@ -73,8 +73,8 @@ export function AllInOneSoftwareSection() {
           </figure>
 
           <div data-aio-software-reveal className="all-in-one-software-section__copy">
-            <h2 className="text-aio-software-label mb-10 m-0">{ALL_IN_ONE_SOFTWARE.label}</h2>
-            <h3 className="text-aio-software-title mb-10 m-0">{ALL_IN_ONE_SOFTWARE.title}</h3>
+            <h2 className="text-aio-software-label mb-0 m-0">{ALL_IN_ONE_SOFTWARE.label}</h2>
+            <h3 className="text-aio-software-title mb-0 m-0">{ALL_IN_ONE_SOFTWARE.title}</h3>
             <p className="text-aio-software-desc m-0">{ALL_IN_ONE_SOFTWARE.description}</p>
           </div>
         </div>
