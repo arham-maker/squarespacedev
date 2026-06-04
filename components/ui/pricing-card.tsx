@@ -5,15 +5,16 @@ import { FaCheck } from "react-icons/fa";
 
 type PricingCardProps = {
   plan: PricingPlan;
+  packageIcon?: string;
 };
 
-export function PricingCard({ plan }: PricingCardProps) {
+export function PricingCard({ plan, packageIcon = PRICING_PACKAGE_ICON }: PricingCardProps) {
   return (
     <article className="pricing-card group">
       <div className="pricing-card__head">
         <h3 className="pricing-card__title">
           <Image
-            src={PRICING_PACKAGE_ICON}
+            src={packageIcon}
             alt=""
             width={40}
             height={40}

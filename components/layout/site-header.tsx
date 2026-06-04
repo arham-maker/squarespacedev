@@ -80,11 +80,11 @@ export function SiteHeader({
                 <div className="absolute left-0 top-full z-50 mt-1 min-w-[200px] border border-neutral-200 bg-white py-2 shadow-lg">
                   {SERVICE_LINKS.map((service) => (
                     <Link
-                      key={service}
-                      href="#services"
+                      key={service.label}
+                      href={service.href}
                       className="nav-link block px-4 py-2 hover:bg-neutral-50"
                     >
-                      {service}
+                      {service.label}
                     </Link>
                   ))}
                 </div>

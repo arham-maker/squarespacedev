@@ -12,7 +12,9 @@ export function ConditionalMarqueeTopbar() {
     pathname === "/our-pricing" ||
     pathname === "/our-work" ||
     pathname === "/terms-and-conditions" ||
-    pathname === "/privacy-policy"
+    pathname === "/privacy-policy" ||
+    pathname === "/digital-marketing" ||
+    pathname === "/logo-design"
   ) {
     return null;
   }

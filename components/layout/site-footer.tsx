@@ -24,7 +24,7 @@ function FooterHeading({ children }: { children: React.ReactNode }) {
 function FooterLinkList({
   items,
 }: {
-  items: readonly { label: string; href: string }[] | readonly string[];
+  items: readonly ({ label: string; href: string } | string)[];
 }) {
   return (
     <ul className="space-y-2.5">

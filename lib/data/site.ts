@@ -15,14 +15,14 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SERVICE_LINKS = [
-  "Digital Marketing",
-  "Logo Design",
-  "Web Design",
-  "Branding",
-  "Graphic Design",
-  "Email & Hosting",
-  "Advertising Services",
-  "Your All-in-One",
-  "Social Media",
-  "Support",
+  { label: "Digital Marketing", href: "/digital-marketing" },
+  { label: "Logo Design", href: "/logo-design" },
+  { label: "Web Design", href: "#services" },
+  { label: "Branding", href: "#services" },
+  { label: "Graphic Design", href: "#services" },
+  { label: "Email & Hosting", href: "#services" },
+  { label: "Advertising Services", href: "#services" },
+  { label: "Your All-in-One", href: "#services" },
+  { label: "Social Media", href: "#services" },
+  { label: "Support", href: "#services" },
 ] as const;

@@ -181,13 +181,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <div className="border-l border-neutral-300 pl-4">
                 {SERVICE_LINKS.map((service) => (
                   <Link
-                    key={service}
-                    href="#services"
+                    key={service.label}
+                    href={service.href}
                     data-menu-item
                     className="text-nav block py-2.5 text-neutral-700"
                     onClick={onClose}
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 ))}
               </div>
