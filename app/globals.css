@@ -1132,7 +1132,8 @@ html.with-fancybox .mouse-cursor {
   .digital-marketing-hero-block,
   .logo-design-hero-block,
   .web-design-hero-block,
-  .branding-hero-block {
+  .branding-hero-block,
+  .graphic-design-hero-block {
     position: relative;
     height: 75vh;
     min-height: clamp(20rem, 60vh, 75vh);
@@ -1177,6 +1178,11 @@ html.with-fancybox .mouse-cursor {
     background-image: url("/contact/contact-banner.webp");
   }
 
+  .graphic-design-hero-block {
+    background-color: var(--color-primary-light);
+    background-image: url("/graphic-design/banner.webp");
+  }
+
   @media (min-width: 768px) {
     .contact-hero-block,
     .pricing-hero-block,
@@ -1185,7 +1191,8 @@ html.with-fancybox .mouse-cursor {
     .digital-marketing-hero-block,
     .logo-design-hero-block,
     .web-design-hero-block,
-    .branding-hero-block {
+    .branding-hero-block,
+    .graphic-design-hero-block {
       min-height: clamp(24rem, 68vh, 75vh);
     }
   }
@@ -1198,7 +1205,8 @@ html.with-fancybox .mouse-cursor {
     .digital-marketing-hero-block,
     .logo-design-hero-block,
     .web-design-hero-block,
-    .branding-hero-block {
+    .branding-hero-block,
+    .graphic-design-hero-block {
       min-height: 75vh;
     }
 
@@ -1209,7 +1217,8 @@ html.with-fancybox .mouse-cursor {
     .digital-marketing-hero-block,
     .logo-design-hero-block,
     .web-design-hero-block,
-    .branding-hero-block {
+    .branding-hero-block,
+    .graphic-design-hero-block {
       background-attachment: fixed;
     }
   }
@@ -1221,7 +1230,8 @@ html.with-fancybox .mouse-cursor {
   .digital-marketing-hero-block .site-header--banner,
   .logo-design-hero-block .site-header--banner,
   .web-design-hero-block .site-header--banner,
-  .branding-hero-block .site-header--banner {
+  .branding-hero-block .site-header--banner,
+  .graphic-design-hero-block .site-header--banner {
     position: absolute;
     inset-inline: 0;
     top: 0;
@@ -1260,7 +1270,8 @@ html.with-fancybox .mouse-cursor {
   .digital-marketing-inner-banner,
   .logo-design-inner-banner,
   .web-design-inner-banner,
-  .branding-inner-banner {
+  .branding-inner-banner,
+  .graphic-design-inner-banner {
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -1281,7 +1292,8 @@ html.with-fancybox .mouse-cursor {
   .digital-marketing-inner-banner .container-main,
   .logo-design-inner-banner .container-main,
   .web-design-inner-banner .container-main,
-  .branding-inner-banner .container-main {
+  .branding-inner-banner .container-main,
+  .graphic-design-inner-banner .container-main {
     display: flex;
     width: 100%;
     max-width: var(--container-max-width);
@@ -1298,7 +1310,8 @@ html.with-fancybox .mouse-cursor {
   .digital-marketing-inner-banner__text,
   .logo-design-inner-banner__text,
   .web-design-inner-banner__text,
-  .branding-inner-banner__text {
+  .branding-inner-banner__text,
+  .graphic-design-inner-banner__text {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2444,6 +2457,12 @@ html.with-fancybox .mouse-cursor {
     justify-content: center;
   }
 
+  .graphic-design-inner-banner__cta {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
   @media (min-width: 1025px) {
     .digital-marketing-inner-banner__cta {
       margin-top: 1.25rem;
@@ -2460,6 +2479,15 @@ html.with-fancybox .mouse-cursor {
     .branding-inner-banner__cta {
       margin-top: 1.25rem;
     }
+
+    .graphic-design-inner-banner__cta {
+      margin-top: 1.25rem;
+    }
+  }
+
+  .graphic-design-inner-banner .graphic-design-hero-desc {
+    max-width: min(100%, 72rem);
+    text-wrap: normal;
   }
 
   .digital-marketing-intro-section {
@@ -3466,6 +3494,184 @@ html.with-fancybox .mouse-cursor {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* ─── Graphic Design page ────────────────────────────────────────────── */
+
+  .graphic-design-page {
+    background-color: #ffffff;
+  }
+
+  .graphic-design-intro-section {
+    padding: 2.5rem 0 3rem;
+    background-color: #1d1b2c;
+    color: #ffffff;
+  }
+
+  @media (min-width: 768px) {
+    .graphic-design-intro-section {
+      padding: 3.5rem 0 4rem;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .graphic-design-intro-section {
+      padding: 5rem 0 6rem;
+    }
+  }
+
+  .graphic-design-intro-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .graphic-design-intro-section__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.5rem 3rem;
+    }
+  }
+
+  .text-gd-intro-title {
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.15;
+    color: #ffffff;
+  }
+
+  @media (min-width: 1025px) {
+    .text-gd-intro-title {
+      font-size: 4.625rem;
+      line-height: 1.12;
+    }
+  }
+
+  .text-gd-intro-subtitle {
+    margin-bottom: 1rem;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.3;
+    color: #ffffff;
+  }
+
+  @media (min-width: 1025px) {
+    .text-gd-intro-subtitle {
+      margin-bottom: 1.25rem;
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+  }
+
+  .text-gd-intro-desc {
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 27px;
+    color: #ffffff;
+  }
+
+  .graphic-design-services-section {
+    padding: 0;
+    background-color: #ffffff;
+  }
+
+  .graphic-design-services-section__container {
+    max-width: none;
+    padding-inline: 0;
+  }
+
+  .graphic-design-services-section__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 768px) {
+    .graphic-design-services-section__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .graphic-design-service-box {
+    min-height: 100%;
+    padding: 3rem 2rem;
+  }
+
+  @media (min-width: 1025px) {
+    .graphic-design-service-box {
+      padding: 5rem 6rem;
+    }
+  }
+
+  .graphic-design-service-box--light {
+    background-color: #ffffff;
+    color: #1d1b2c;
+  }
+
+  .graphic-design-service-box--pattern {
+    background: #ffffff url("/graphic-design/box-bg.png") center center / cover
+      no-repeat;
+    color: #1d1b2c;
+  }
+
+  .text-gd-service-title {
+    margin-bottom: 1rem;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 1025px) {
+    .text-gd-service-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  .graphic-design-service-box__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-top: 1rem;
+  }
+
+  .graphic-design-service-box__list--cols {
+    column-count: 2;
+    column-gap: 2rem;
+    display: block;
+  }
+
+  .graphic-design-service-box__list--cols .text-gd-service-item {
+    break-inside: avoid;
+    margin-bottom: 0.25rem;
+  }
+
+  .text-gd-service-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.625rem 0;
+    font-family: var(--font-inter), Inter, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.4;
+    color: inherit;
+  }
+
+  .graphic-design-service-box__icon {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.85;
   }
 
   /* ─── Marquee topbar ───────────────────────────────────────────────────── */

@@ -12,7 +12,7 @@ export const FOOTER_QUICK_LINKS = [
 
 export const FOOTER_SERVICES_LEFT = [
   { label: "Web Design", href: "/web-design" },
-  "Graphic Design",
+  { label: "Graphic Design", href: "/graphic-design" },
   "Social Media",
   { label: "Branding", href: "/branding" },
   { label: "Logo Design", href: "/logo-design" },
@@ -21,7 +21,7 @@ export const FOOTER_SERVICES_LEFT = [
 
 export const FOOTER_SERVICES_RIGHT = [
   "Branding",
-  "Graphic Design",
+  { label: "Graphic Design", href: "/graphic-design" },
   "Email & Hosting",
   "Advertising Services",
   "Your All-in-One",
