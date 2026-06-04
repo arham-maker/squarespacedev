@@ -18,7 +18,7 @@ export const SERVICE_LINKS = [
   { label: "Digital Marketing", href: "/digital-marketing" },
   { label: "Logo Design", href: "/logo-design" },
   { label: "Web Design", href: "/web-design" },
-  { label: "Branding", href: "#services" },
+  { label: "Branding", href: "/branding" },
   { label: "Graphic Design", href: "#services" },
   { label: "Email & Hosting", href: "#services" },
   { label: "Advertising Services", href: "#services" },

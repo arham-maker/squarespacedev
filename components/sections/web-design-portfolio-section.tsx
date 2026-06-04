@@ -33,6 +33,8 @@ export function WebDesignPortfolioSection() {
   const [activeTab, setActiveTab] = useState<WebDesignPortfolioTabId>("all");
 
   const items = getWebDesignPortfolioItemsForTab(activeTab);
+  const isAllTab = activeTab === "all";
+  const enableLoop = isAllTab && items.length > 1 && !reducedMotion;
 
   const switchTab = useCallback(
     (tabId: WebDesignPortfolioTabId) => {
@@ -120,7 +122,7 @@ export function WebDesignPortfolioSection() {
       <Container>
         <h2
           data-wd-portfolio-title
-          className="text-wd-portfolio-title m-0 text-center"
+          className="text-wd-portfolio-title mb-10 m-0 text-center"
         >
           {WEB_DESIGN_PORTFOLIO.title}
         </h2>
@@ -161,26 +163,32 @@ export function WebDesignPortfolioSection() {
       >
         <Swiper
           key={activeTab}
-          className="web-design-portfolio-slider"
+          className={`web-design-portfolio-slider ${!isAllTab ? "web-design-portfolio-slider--centered" : ""}`}
           modules={[Autoplay]}
           spaceBetween={30}
           slidesPerView={1}
           speed={1000}
-          loop={false}
+          loop={enableLoop}
+          centeredSlides={!isAllTab}
+          centeredSlidesBounds={!isAllTab}
+          watchOverflow
           autoplay={
             reducedMotion
               ? false
               : {
                   delay: 2500,
                   disableOnInteraction: false,
+                  pauseOnMouseEnter: false,
                 }
           }
           breakpoints={{
             768: {
               slidesPerView: 2,
+              centeredSlides: !isAllTab,
             },
             1025: {
               slidesPerView: 3,
+              centeredSlides: !isAllTab,
             },
           }}
         >
