@@ -11,6 +11,7 @@ import {
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { LP_LEAD_FORM } from "@/lib/data/lp-lead-form";
+import { LP2_LEAD_FORM } from "@/lib/data/lp2-lead-form";
 import {
   getFormString,
   submitForm,
@@ -25,13 +26,17 @@ type LpLeadModalProps = {
   isOpen: boolean;
   selectedPackage: SelectedPackage | null;
   onClose: () => void;
+  variant?: "lp" | "lp2";
 };
 
 export function LpLeadModal({
   isOpen,
   selectedPackage,
   onClose,
+  variant = "lp",
 }: LpLeadModalProps) {
+  const formConfig = variant === "lp2" ? LP2_LEAD_FORM : LP_LEAD_FORM;
+  const isLp2 = variant === "lp2";
   const router = useRouter();
   const reducedMotion = usePrefersReducedMotion();
   const titleId = useId();
@@ -114,14 +119,15 @@ export function LpLeadModal({
     const formData = new FormData(event.currentTarget);
 
     try {
+      const messageField = isLp2
+        ? LP2_LEAD_FORM.fields.message.name
+        : LP_LEAD_FORM.fields.industry.name;
+
       const baseFields = {
-        fullName: getFormString(formData, LP_LEAD_FORM.fields.name.name),
-        email: getFormString(formData, LP_LEAD_FORM.fields.email.name),
-        phone: getFormString(formData, LP_LEAD_FORM.fields.phone.name),
-        businessIndustry: getFormString(
-          formData,
-          LP_LEAD_FORM.fields.industry.name
-        ),
+        fullName: getFormString(formData, formConfig.fields.name.name),
+        email: getFormString(formData, formConfig.fields.email.name),
+        phone: getFormString(formData, formConfig.fields.phone.name),
+        businessIndustry: getFormString(formData, messageField),
         consentMarketing: "Accepted via LP lead form",
         consentSms: "Accepted via LP lead form",
         consentTerms: "Accepted via LP lead form",
@@ -135,7 +141,7 @@ export function LpLeadModal({
       });
 
       onClose();
-      router.push(LP_LEAD_FORM.thankYouPath);
+      router.push(formConfig.thankYouPath);
     } catch (error) {
       setSubmitError(
         error instanceof Error
@@ -188,25 +194,51 @@ export function LpLeadModal({
               className={`centercont ${selectedPackage ? "dynamic" : "static"}`}
               id={titleId}
             >
-              <h3>
-                <span className="fs-36">{LP_LEAD_FORM.title}</span>
-              </h3>
-              {selectedPackage ? (
-                <h4>
-                  starting at <span>{selectedPackage.price}</span> only
-                </h4>
-              ) : null}
-              {selectedPackage ? (
-                <div className="lp-lead-modal__package">
-                  <strong>{selectedPackage.name}</strong>
-                  {selectedPackage.category ? (
-                    <>
-                      <br />
-                      {selectedPackage.category}
-                    </>
+              {isLp2 ? (
+                <>
+                  <h3>
+                    <span className="fs-36">
+                      {selectedPackage
+                        ? LP2_LEAD_FORM.packageTitle
+                        : LP2_LEAD_FORM.staticTitle}
+                    </span>
+                  </h3>
+                  {selectedPackage ? (
+                    <h4>
+                      starting at <span>{LP2_LEAD_FORM.packagePrice}</span> only
+                    </h4>
+                  ) : (
+                    <p>{LP2_LEAD_FORM.staticLead}</p>
+                  )}
+                  {selectedPackage ? (
+                    <p>{LP2_LEAD_FORM.packageLead}</p>
                   ) : null}
-                </div>
-              ) : null}
+                </>
+              ) : (
+                <>
+                  <h3>
+                    <span className="fs-36">
+                      {"title" in formConfig ? formConfig.title : ""}
+                    </span>
+                  </h3>
+                  {selectedPackage ? (
+                    <h4>
+                      starting at <span>{selectedPackage.price}</span> only
+                    </h4>
+                  ) : null}
+                  {selectedPackage ? (
+                    <div className="lp-lead-modal__package">
+                      <strong>{selectedPackage.name}</strong>
+                      {selectedPackage.category ? (
+                        <>
+                          <br />
+                          {selectedPackage.category}
+                        </>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </>
+              )}
             </div>
 
             <div className="formpop">
@@ -214,8 +246,8 @@ export function LpLeadModal({
                 <div className="fld-input">
                   <input
                     type="text"
-                    name={LP_LEAD_FORM.fields.name.name}
-                    placeholder={LP_LEAD_FORM.fields.name.placeholder}
+                    name={formConfig.fields.name.name}
+                    placeholder={formConfig.fields.name.placeholder}
                     autoComplete="name"
                     required
                   />
@@ -224,8 +256,8 @@ export function LpLeadModal({
                 <div className="fld-input">
                   <input
                     type="email"
-                    name={LP_LEAD_FORM.fields.email.name}
-                    placeholder={LP_LEAD_FORM.fields.email.placeholder}
+                    name={formConfig.fields.email.name}
+                    placeholder={formConfig.fields.email.placeholder}
                     autoComplete="email"
                     required
                   />
@@ -234,8 +266,8 @@ export function LpLeadModal({
                 <div className="fld-input">
                   <input
                     type="tel"
-                    name={LP_LEAD_FORM.fields.phone.name}
-                    placeholder={LP_LEAD_FORM.fields.phone.placeholder}
+                    name={formConfig.fields.phone.name}
+                    placeholder={formConfig.fields.phone.placeholder}
                     autoComplete="tel"
                     inputMode="tel"
                     minLength={10}
@@ -246,9 +278,17 @@ export function LpLeadModal({
 
                 <div className="fld-input">
                   <textarea
-                    name={LP_LEAD_FORM.fields.industry.name}
-                    placeholder={LP_LEAD_FORM.fields.industry.placeholder}
-                    rows={2}
+                    name={
+                      isLp2
+                        ? LP2_LEAD_FORM.fields.message.name
+                        : LP_LEAD_FORM.fields.industry.name
+                    }
+                    placeholder={
+                      isLp2
+                        ? LP2_LEAD_FORM.fields.message.placeholder
+                        : LP_LEAD_FORM.fields.industry.placeholder
+                    }
+                    rows={isLp2 ? 3 : 2}
                   />
                 </div>
 
@@ -260,7 +300,7 @@ export function LpLeadModal({
 
                 <div className="fld-btn">
                   <button type="submit" disabled={isSubmitting}>
-                    {LP_LEAD_FORM.submitLabel}
+                    {formConfig.submitLabel}
                   </button>
                 </div>
               </form>
@@ -270,8 +310,8 @@ export function LpLeadModal({
           <div className="popup-image">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={LP_LEAD_FORM.image.src}
-              alt={LP_LEAD_FORM.image.alt}
+              src={formConfig.image.src}
+              alt={formConfig.image.alt}
               loading="eager"
             />
           </div>

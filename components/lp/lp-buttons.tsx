@@ -66,13 +66,15 @@ export function LpLiveChatButton({
   className = "theme-btn bordered",
   iconSrc,
   label = "Live Chat",
+  href = SITE.phoneHref,
 }: {
   className?: string;
   iconSrc?: string;
   label?: string;
+  href?: string;
 }) {
   return (
-    <a href={SITE.phoneHref} className={className} title={label}>
+    <a href={href} className={className} title={label}>
       {iconSrc ? <img src={lpImage(iconSrc)} alt="" /> : null}
       {label}
     </a>

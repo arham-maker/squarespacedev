@@ -253,8 +253,8 @@ export function LpPage() {
         </div>
       </section>
 
-      <LpTestimonialsSection />
       <LpPricingSection />
+      <LpTestimonialsSection />
 
       <section className="sec-4">
         <div className="container">

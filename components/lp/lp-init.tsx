@@ -19,7 +19,15 @@ function revealVisibleAosElements(root: ParentNode) {
   });
 }
 
-export function LpInit() {
+type LpInitProps = {
+  designCardSliders?: boolean;
+  fancyboxGroup?: string;
+};
+
+export function LpInit({
+  designCardSliders = false,
+  fancyboxGroup,
+}: LpInitProps = {}) {
   useEffect(() => {
     let cleaned = false;
     let aosScrollTimer: number | undefined;
@@ -44,6 +52,13 @@ export function LpInit() {
       if (cleaned) return;
 
       const aos = AOS as AosInstance;
+
+      // Reveal above-the-fold hero before AOS applies hidden initial styles.
+      document
+        .querySelectorAll<HTMLElement>(".lp2-root .mainBanner [data-aos]")
+        .forEach((el) => {
+          el.classList.add("aos-animate");
+        });
 
       aos.init({
         once: true,
@@ -130,6 +145,76 @@ export function LpInit() {
         refreshAosHard();
       }
 
+      const initDesignCardSliders = () => {
+        if (cleaned || !designCardSliders) return;
+
+        const marqueeSettings = {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+          autoplay: true,
+          autoplaySpeed: 0,
+          speed: 8000,
+          cssEase: "linear",
+          dots: false,
+          arrows: false,
+          pauseOnHover: false,
+          pauseOnFocus: false,
+          waitForAnimate: false,
+          responsive: [
+            {
+              breakpoint: 1025,
+              settings: { slidesToShow: 3, slidesToScroll: 1 },
+            },
+            {
+              breakpoint: 885,
+              settings: { slidesToShow: 2, slidesToScroll: 1 },
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                cssEase: "ease",
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ],
+        };
+
+        $(".lp-root .design-card-list").each(function (this: HTMLElement) {
+          const $el = $(this);
+          if (!$el.length || $el.hasClass("slick-initialized")) return;
+          $el.slick(marqueeSettings);
+          $el.slick("slickPlay");
+        });
+
+        $(".lp-root .design-card-list-2").each(function (this: HTMLElement) {
+          const $el = $(this);
+          if (!$el.length || $el.hasClass("slick-initialized")) return;
+          $el.slick({ ...marqueeSettings, rtl: true });
+          $el.slick("slickPlay");
+        });
+
+        refreshAosHard();
+      };
+
+      if (designCardSliders) {
+        initDesignCardSliders();
+        requestAnimationFrame(initDesignCardSliders);
+        window.setTimeout(initDesignCardSliders, 300);
+        window.addEventListener("load", initDesignCardSliders);
+      }
+
+      let fancyboxCleanup: (() => void) | undefined;
+      if (fancyboxGroup) {
+        const [{ Fancybox }, _] = await Promise.all([
+          import("@fancyapps/ui"),
+          import("@fancyapps/ui/dist/fancybox/fancybox.css"),
+        ]);
+        Fancybox.bind(`[data-fancybox="${fancyboxGroup}"]`, {});
+        fancyboxCleanup = () => Fancybox.destroy();
+      }
+
       $(".accordion-list > li > .answer").hide();
 
       const onAccordionClick = function (this: HTMLElement, e: JQuery.ClickEvent) {
@@ -197,6 +282,9 @@ export function LpInit() {
 
       return () => {
         window.removeEventListener("load", onWindowLoad);
+        if (designCardSliders) {
+          window.removeEventListener("load", initDesignCardSliders);
+        }
         window.clearTimeout(aosScrollTimer);
         $(window).off("scroll", onAosScroll);
         $(window).off("scroll", onScroll);
@@ -205,8 +293,17 @@ export function LpInit() {
         $(".menu-Bar").off("click", onMenuToggle);
         aosFallbackObserver?.disconnect();
         aosResizeObserver?.disconnect();
+        fancyboxCleanup?.();
         if ($portfolio.hasClass("slick-initialized")) {
           $portfolio.slick("unslick");
+        }
+        const $designList = $(".design-card-list");
+        if ($designList.hasClass("slick-initialized")) {
+          $designList.slick("unslick");
+        }
+        const $designList2 = $(".design-card-list-2");
+        if ($designList2.hasClass("slick-initialized")) {
+          $designList2.slick("unslick");
         }
       };
     }
@@ -221,7 +318,7 @@ export function LpInit() {
       cleaned = true;
       teardown?.();
     };
-  }, []);
+  }, [designCardSliders, fancyboxGroup]);
 
   return null;
 }
