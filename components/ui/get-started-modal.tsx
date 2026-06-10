@@ -10,7 +10,7 @@ import {
   type FormEvent,
 } from "react";
 import { createPortal } from "react-dom";
-import { FaArrowRight } from "react-icons/fa6";
+import { BtnPrimaryContent } from "@/components/ui/btn-primary-content";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { LEAD_FORM } from "@/lib/data/lead-form";
 import {
@@ -193,9 +193,9 @@ export function GetStartedModal({
             <Image
               src={LEAD_FORM.image.src}
               alt={LEAD_FORM.image.alt}
-              width={396}
-              height={600}
+              fill
               className="get-started-modal__img"
+              sizes="(min-width: 768px) 45vw, 100vw"
               priority
             />
           </div>
@@ -276,8 +276,7 @@ export function GetStartedModal({
                 className="get-started-modal__submit"
                 disabled={isSubmitting}
               >
-                {LEAD_FORM.submitLabel}
-                <FaArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+                <BtnPrimaryContent>{LEAD_FORM.submitLabel}</BtnPrimaryContent>
               </button>
             </form>
           </div>

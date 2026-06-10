@@ -4,7 +4,7 @@ import { SITE } from "@/lib/data/site";
 
 export function SiteLogo() {
   return (
-    <Link href="/" className="inline-flex shrink-0 items-center">
+    <Link href="/" className="inline-flex shrink-0 cursor-pointer items-center">
       <Image
         src={SITE.logoBlack}
         alt={SITE.name}

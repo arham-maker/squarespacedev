@@ -10,7 +10,7 @@ import {
   type FormEvent,
 } from "react";
 import { createPortal } from "react-dom";
-import { FaArrowRight } from "react-icons/fa6";
+import { BtnPrimaryContent } from "@/components/ui/btn-primary-content";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { AUTO_POPUP_FORM } from "@/lib/data/auto-popup-form";
 import {
@@ -185,9 +185,9 @@ export function AutoPopupModal({ isOpen, onClose }: AutoPopupModalProps) {
             <Image
               src={AUTO_POPUP_FORM.image.src}
               alt={AUTO_POPUP_FORM.image.alt}
-              width={396}
-              height={600}
+              fill
               className="get-started-modal__img"
+              sizes="(min-width: 768px) 45vw, 100vw"
               priority
             />
           </div>
@@ -280,8 +280,9 @@ export function AutoPopupModal({ isOpen, onClose }: AutoPopupModalProps) {
                 className="get-started-modal__submit"
                 disabled={isSubmitting}
               >
-                {AUTO_POPUP_FORM.submitLabel}
-                <FaArrowRight className="h-4 w-4 shrink-0" aria-hidden />
+                <BtnPrimaryContent>
+                  {AUTO_POPUP_FORM.submitLabel}
+                </BtnPrimaryContent>
               </button>
             </form>
           </div>

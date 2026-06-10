@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa6";
+import { BtnPrimaryContent } from "@/components/ui/btn-primary-content";
 import { Container } from "@/components/layout/container";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { CONTACT_FORM, CONTACT_PARTNER_LOGOS } from "@/lib/data/contact";
@@ -222,14 +222,12 @@ export function ContactFormSection() {
 
               <button
                 type="submit"
-                className="btn btn-primary mt-6 gap-3"
+                className="btn btn-primary mt-6"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Submitting…" : CONTACT_FORM.submitLabel}
-                <FaArrowRight
-                  className="h-5 w-5 shrink-0"
-                  aria-hidden
-                />
+                <BtnPrimaryContent>
+                  {isSubmitting ? "Submitting…" : CONTACT_FORM.submitLabel}
+                </BtnPrimaryContent>
               </button>
             </form>
           </div>

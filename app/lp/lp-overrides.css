@@ -82,6 +82,20 @@ body:has(.lp-root) .mouse-cursor {
   display: none !important;
 }
 
+body:has(.lp-root) a[href],
+body:has(.lp-root) button:not(:disabled),
+body:has(.lp-root) [type="button"]:not(:disabled),
+body:has(.lp-root) [type="submit"]:not(:disabled) {
+  cursor: pointer;
+}
+
+.lp-root header .logo,
+.lp-root footer .logo,
+.lp-root header .logo img,
+.lp-root footer .logo img {
+  cursor: pointer;
+}
+
 /* Wix Madefor Display sitewide on /lp (matches reference style.css tokens) */
 body:has(.lp-root) {
   --font-heading: "Wix Madefor Display", sans-serif;
@@ -139,7 +153,11 @@ body:has(.lp-root) {
   border-radius: 0 !important;
 }
 
-.get-started-modal__title,
+.get-started-modal__title {
+  font-size: clamp(2rem, 5vw, 2.5rem) !important;
+  font-weight: 700 !important;
+}
+
 .get-started-modal__title-highlight,
 .get-started-modal__field input,
 .get-started-modal__checkbox,
@@ -165,19 +183,86 @@ body:has(.lp-root) {
   display: flex !important;
   position: absolute !important;
   background: #ececec !important;
+  border-radius: 50% !important;
+}
+
+.get-started-modal__form-wrap {
+  padding: 2rem !important;
+  background: #ffffff !important;
+}
+
+.get-started-modal__media {
+  position: relative !important;
+  display: flex !important;
+  overflow: hidden !important;
+  align-self: stretch !important;
+  min-height: 280px !important;
+}
+
+.get-started-modal__img {
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+@media (min-width: 768px) {
+  .get-started-modal__form-wrap {
+    padding: 3.5rem 2rem !important;
+  }
 }
 
 .get-started-modal__submit {
   display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.625rem !important;
+  align-items: stretch !important;
+  justify-content: stretch !important;
+  gap: 0 !important;
   width: 100% !important;
   height: 52px !important;
-  border: 0 !important;
+  padding: 0 !important;
+  border: 1px solid rgb(0 0 0 / 13%) !important;
   border-radius: 0 !important;
-  background-color: #000000 !important;
+  background: transparent !important;
   color: #ffffff !important;
   font-weight: 600 !important;
   text-transform: uppercase !important;
+  overflow: hidden !important;
+}
+
+.get-started-modal__submit .btn__label {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+.get-started-modal__submit .btn__icon {
+  background: #1d1b2c !important;
+  color: #ffffff !important;
+}
+
+.lp-root .theme-btn,
+.lp-root .fld-btn button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.lp-root .theme-btn::before,
+.lp-root .fld-btn button::before {
+  content: "";
+  position: absolute;
+  bottom: -80%;
+  left: 50%;
+  width: 160%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgb(0 0 0 / 18%);
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.lp-root .theme-btn:hover::before,
+.lp-root .theme-btn:focus-visible::before,
+.lp-root .fld-btn button:hover:not(:disabled)::before,
+.lp-root .fld-btn button:focus-visible:not(:disabled)::before {
+  transform: translateX(-50%) scale(1.15);
 }
