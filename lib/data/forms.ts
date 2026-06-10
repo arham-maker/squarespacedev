@@ -1,1 +1,1 @@
-export const FORM_RECIPIENT_EMAIL = "info@squarespacedev.com" as const;
+export const FORM_RECIPIENT_EMAIL = "support@squarespacedev.com" as const;

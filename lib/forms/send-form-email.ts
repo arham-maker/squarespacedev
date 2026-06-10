@@ -78,7 +78,7 @@ async function sendViaSmtp(payload: FormSubmissionPayload): Promise<void> {
   const subject = buildFormEmailSubject(payload);
 
   // When SMTP login is a different mailbox (e.g. arham@), BCC that account so
-  // you still receive a copy while the primary notification goes to info@.
+  // you still receive a copy while the primary notification goes to support@.
   const bcc =
     process.env.FORM_BCC_EMAIL?.trim() ||
     (config.user.toLowerCase() !== recipient.toLowerCase()

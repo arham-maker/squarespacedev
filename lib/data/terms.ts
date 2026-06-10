@@ -35,7 +35,7 @@ export const TERMS_CLAIM_ITEMS = [
     type: "link" as const,
     prefix: "Sending us an ",
     label: "Email",
-    href: "mailto:info@squarespacedev.com",
+    href: SITE.emailHref,
   },
 ] as const;
 
