@@ -1,4 +1,4 @@
-import { lpImage } from "@/components/lp/lp-assets";
+import { LP_ASSETS, LP_SSD_LOGO, LP_TRUSTPILOT_EXCELLENT, lpImage } from "@/components/lp/lp-assets";
 
 export function Lp2TestimonialsSection() {
   return (
@@ -34,7 +34,11 @@ export function Lp2TestimonialsSection() {
                     <img src={lpImage("client/f2.png")} alt="" loading="lazy" />
                   </div>
                   <div className="detail-text pad-10">
-                    <img src={lpImage("client/ss-fb-1.png")} alt="" loading="lazy" />
+                    <img
+                      src={`${LP_ASSETS}/${encodeURIComponent("Frame 1 (1).png")}`}
+                      alt=""
+                      loading="lazy"
+                    />
                   </div>
                 </div>
                 <div className="testi-slide">
@@ -48,8 +52,8 @@ export function Lp2TestimonialsSection() {
                     <img src={lpImage("client/ss-txt2.png")} alt="" loading="lazy" />
                   </div>
                   <div className="client">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
               </li>
@@ -71,8 +75,8 @@ export function Lp2TestimonialsSection() {
                     />
                   </div>
                   <div className="client c2">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
                 <div className="testi-slide">
@@ -86,8 +90,8 @@ export function Lp2TestimonialsSection() {
                     <img src={lpImage("client/ss-txt.png")} alt="" loading="lazy" />
                   </div>
                   <div className="client">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
               </li>
@@ -103,8 +107,8 @@ export function Lp2TestimonialsSection() {
                     <img src={lpImage("client/ss7.png")} alt="" loading="lazy" />
                   </div>
                   <div className="client">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
                 <div className="testi-slide">
@@ -118,8 +122,8 @@ export function Lp2TestimonialsSection() {
                     <img src={lpImage("client/whyus-2.png")} alt="" loading="lazy" />
                   </div>
                   <div className="client c2">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
               </li>
@@ -129,10 +133,14 @@ export function Lp2TestimonialsSection() {
                     <div className="det">
                       <span className="name">squarespacedev</span>
                     </div>
-                    <img src={lpImage("client/f8.png")} alt="" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                   <div className="detail-text pad-10">
-                    <img src={lpImage("client/ss-fb-2.png")} alt="" loading="lazy" />
+                    <img
+                      src={`${LP_ASSETS}/${encodeURIComponent("Frame 2 (1).png")}`}
+                      alt=""
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </li>
@@ -154,8 +162,8 @@ export function Lp2TestimonialsSection() {
                     />
                   </div>
                   <div className="client">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
                 <div className="testi-slide">
@@ -169,8 +177,8 @@ export function Lp2TestimonialsSection() {
                     <img src={lpImage("client/ss-txt3.png")} alt="" loading="lazy" />
                   </div>
                   <div className="client c3">
-                    <img src={lpImage("trustpilot.svg")} alt="" loading="lazy" />
-                    <img src={lpImage("client/company-logo.png")} alt="" loading="lazy" />
+                    <img src={LP_TRUSTPILOT_EXCELLENT} alt="" className="lp-trustpilot-logo" loading="lazy" />
+                    <img src={LP_SSD_LOGO} alt="" className="lp-ssd-logo" loading="lazy" />
                   </div>
                 </div>
               </li>

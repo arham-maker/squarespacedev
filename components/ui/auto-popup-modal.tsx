@@ -10,7 +10,6 @@ import {
   type FormEvent,
 } from "react";
 import { createPortal } from "react-dom";
-import { BtnPrimaryContent } from "@/components/ui/btn-primary-content";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { AUTO_POPUP_FORM } from "@/lib/data/auto-popup-form";
 import {
@@ -280,9 +279,7 @@ export function AutoPopupModal({ isOpen, onClose }: AutoPopupModalProps) {
                 className="get-started-modal__submit"
                 disabled={isSubmitting}
               >
-                <BtnPrimaryContent>
-                  {AUTO_POPUP_FORM.submitLabel}
-                </BtnPrimaryContent>
+                {AUTO_POPUP_FORM.submitLabel}
               </button>
             </form>
           </div>

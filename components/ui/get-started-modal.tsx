@@ -10,7 +10,6 @@ import {
   type FormEvent,
 } from "react";
 import { createPortal } from "react-dom";
-import { BtnPrimaryContent } from "@/components/ui/btn-primary-content";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { LEAD_FORM } from "@/lib/data/lead-form";
 import {
@@ -276,7 +275,7 @@ export function GetStartedModal({
                 className="get-started-modal__submit"
                 disabled={isSubmitting}
               >
-                <BtnPrimaryContent>{LEAD_FORM.submitLabel}</BtnPrimaryContent>
+                {LEAD_FORM.submitLabel}
               </button>
             </form>
           </div>

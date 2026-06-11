@@ -1,5 +1,5 @@
-import { Lp2Page } from "@/components/lp2/lp2-page";
+import { LpPage } from "@/components/lp/lp-page";
 
 export default function Lp2RoutePage() {
-  return <Lp2Page />;
+  return <LpPage />;
 }

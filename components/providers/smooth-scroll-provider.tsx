@@ -13,7 +13,7 @@ type SmoothScrollProviderProps = {
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   const pathname = usePathname();
   const reducedMotion = usePrefersReducedMotion();
-  const isLp = pathname === "/lp";
+  const isLp = pathname === "/lp" || pathname === "/lp2";
 
   useEffect(() => {
     registerGsapPlugins();
