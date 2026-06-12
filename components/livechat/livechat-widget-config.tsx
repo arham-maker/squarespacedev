@@ -10,10 +10,11 @@ export function LiveChatWidgetConfig() {
       `${LIVECHAT_WIDGET.maximizedHeightPx}px`
     );
 
-    const onVisibilityChanged = (data: { visibility?: string }) => {
+    const onVisibilityChanged = (...args: unknown[]) => {
+      const data = args[0] as { visibility?: string } | undefined;
       document.body.classList.toggle(
         "livechat-maximized",
-        data.visibility === "maximized"
+        data?.visibility === "maximized"
       );
     };
 

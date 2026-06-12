@@ -266,15 +266,39 @@ body:has(.lp-root) {
   background-position: 0% 0;
 }
 
-.lp-root .theme-btn.bg-black {
-  background-image: linear-gradient(90deg, #1d1b2c 50%, #000000 50%);
-  background-size: 200% 100%;
-  background-position: 100% 0;
+.lp-root .theme-btn.bg-black,
+.lp-root .pckg .btn-wrap a.theme-btn:not(.bordered) {
+  background-color: #000000;
+  background-image: none;
+  color: #ffffff;
+}
+
+.lp-root .theme-btn.bg-black::before,
+.lp-root .pckg .btn-wrap a.theme-btn:not(.bordered)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #000000;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.lp-root .theme-btn.bg-black:hover::before,
+.lp-root .theme-btn.bg-black:focus-visible::before,
+.lp-root .pckg .btn-wrap a.theme-btn:not(.bordered):hover::before,
+.lp-root .pckg .btn-wrap a.theme-btn:not(.bordered):focus-visible::before {
+  transform: scaleX(1);
 }
 
 .lp-root .theme-btn.bg-black:hover,
-.lp-root .theme-btn.bg-black:focus-visible {
-  background-position: 0% 0;
+.lp-root .theme-btn.bg-black:focus-visible,
+.lp-root .pckg .btn-wrap a.theme-btn:not(.bordered):hover,
+.lp-root .pckg .btn-wrap a.theme-btn:not(.bordered):focus-visible {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .lp-root .theme-btn.bg-orange {
@@ -295,9 +319,14 @@ body:has(.lp-root) {
   }
 
   .lp-root .theme-btn:not(.bordered):not(.bg-black):not(.bg-orange),
-  .lp-root .theme-btn.bg-black,
   .lp-root .theme-btn.bg-orange,
   .lp-root .fld-btn button {
     background-position: 0% 0;
+  }
+
+  .lp-root .theme-btn.bg-black::before,
+  .lp-root .pckg .btn-wrap a.theme-btn:not(.bordered)::before {
+    transition: none;
+    transform: scaleX(1);
   }
 }
