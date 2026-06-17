@@ -28,7 +28,7 @@ function PromoPackageCard({ pkg }: { pkg: LpPackage }) {
             </span>
           </div>
           <div className="btn-wrap">
-            <LpPackageButton pkg={pkg}>
+            <LpPackageButton pkg={pkg} category="Squarespace Website">
               Let&apos;s Get Started
             </LpPackageButton>
           </div>
