@@ -108,11 +108,7 @@ export function LpPricingSection() {
             <div className="col-lg-12">
               <div className="pkg-list">
                 {LP_PROMOTIONAL_PACKAGES.map((pkg) => (
-                  <PackageCard
-                    key={pkg.title}
-                    pkg={pkg}
-                    category="Promotional Website"
-                  />
+                  <PackageCard key={pkg.title} pkg={pkg} category="" />
                 ))}
               </div>
             </div>

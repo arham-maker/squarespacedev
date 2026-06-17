@@ -199,13 +199,13 @@ export function LpLeadModal({
                   <h3>
                     <span className="fs-36">
                       {selectedPackage
-                        ? LP2_LEAD_FORM.packageTitle
+                        ? selectedPackage.name
                         : LP2_LEAD_FORM.staticTitle}
                     </span>
                   </h3>
                   {selectedPackage ? (
                     <h4>
-                      starting at <span>{LP2_LEAD_FORM.packagePrice}</span> only
+                      In Just <span>{selectedPackage.price}</span>
                     </h4>
                   ) : (
                     <p>{LP2_LEAD_FORM.staticLead}</p>
@@ -223,7 +223,7 @@ export function LpLeadModal({
                   </h3>
                   {selectedPackage ? (
                     <h4>
-                      starting at <span>{selectedPackage.price}</span> only
+                      In Just <span>{selectedPackage.price}</span>
                     </h4>
                   ) : null}
                   {selectedPackage ? (
