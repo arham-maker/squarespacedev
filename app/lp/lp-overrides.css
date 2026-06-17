@@ -265,6 +265,12 @@ body:has(.lp-root) {
   color: #ffffff;
 }
 
+.lp-root .mainBanner .btn-wrap .theme-btn::before,
+.lp-root .mainBanner .btn-wrap .theme-btn::after {
+  content: none !important;
+  display: none !important;
+}
+
 .lp-root .fld-btn button {
   background-image: linear-gradient(90deg, #e56d2e 50%, #ff8d4d 50%);
   background-size: 200% 100%;

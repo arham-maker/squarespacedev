@@ -635,9 +635,6 @@ export function LpPage() {
                   <LpImg path="f-logo4.svg" alt="" />
                 </li>
               </ul>
-              <div className="text-center">
-                <LpImg path="footer-trustpilot.svg" alt="" />
-              </div>
             </div>
           </div>
         </div>
