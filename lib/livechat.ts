@@ -1,8 +1,18 @@
 export const LIVECHAT_LICENSE = 19774720;
 
 export function isAgentMessageEvent(event: unknown): boolean {
-  const data = event as { type?: string; author?: { type?: string } } | null;
-  return data?.type === "message" && data?.author?.type === "agent";
+  const data = event as
+    | {
+        type?: string;
+        author?: { type?: string };
+        author_type?: string;
+      }
+    | null;
+
+  return (
+    data?.type === "message" &&
+    (data.author?.type === "agent" || data.author_type === "agent")
+  );
 }
 
 export function openLiveChat() {

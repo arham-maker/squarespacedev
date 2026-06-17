@@ -7,6 +7,7 @@ type LiveChatNewEventData = {
   author?: {
     type?: string;
   };
+  author_type?: string;
 };
 
 type LiveChatWidgetState = {
