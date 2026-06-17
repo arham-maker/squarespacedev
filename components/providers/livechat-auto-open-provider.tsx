@@ -11,24 +11,6 @@ import { useLeadForm } from "@/components/providers/lead-form-provider";
 import { LIVECHAT_AUTO_OPEN } from "@/lib/data/livechat-auto-open";
 import { openLiveChat } from "@/lib/livechat";
 
-function hasAutoOpenedLiveChat(): boolean {
-  try {
-    return (
-      sessionStorage.getItem(LIVECHAT_AUTO_OPEN.sessionStorageKey) === "1"
-    );
-  } catch {
-    return false;
-  }
-}
-
-function markLiveChatAutoOpened(): void {
-  try {
-    sessionStorage.setItem(LIVECHAT_AUTO_OPEN.sessionStorageKey, "1");
-  } catch {
-    // Ignore storage errors (private browsing, etc.)
-  }
-}
-
 export function LiveChatAutoOpenProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const { isOpen: isLeadFormOpen } = useLeadForm();
@@ -40,7 +22,7 @@ export function LiveChatAutoOpenProvider({ children }: { children: ReactNode }) 
   );
 
   const tryOpen = useCallback(() => {
-    if (isExcluded || hasAutoOpenedLiveChat()) return;
+    if (isExcluded) return;
 
     if (isLeadFormOpen) {
       pendingOpenRef.current = true;
@@ -48,12 +30,11 @@ export function LiveChatAutoOpenProvider({ children }: { children: ReactNode }) 
     }
 
     pendingOpenRef.current = false;
-    markLiveChatAutoOpened();
     openLiveChat();
   }, [isExcluded, isLeadFormOpen]);
 
   useEffect(() => {
-    if (isExcluded || hasAutoOpenedLiveChat()) return;
+    if (isExcluded) return;
 
     timerRef.current = setTimeout(tryOpen, LIVECHAT_AUTO_OPEN.delayMs);
 
@@ -65,7 +46,6 @@ export function LiveChatAutoOpenProvider({ children }: { children: ReactNode }) 
   useEffect(() => {
     if (!isLeadFormOpen) return;
 
-    markLiveChatAutoOpened();
     pendingOpenRef.current = false;
     if (timerRef.current) {
       clearTimeout(timerRef.current);
