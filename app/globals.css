@@ -5681,6 +5681,13 @@ html.with-fancybox .mouse-cursor {
     box-shadow: 0 0 30px -9px rgb(0 0 0 / 43%);
   }
 
+  .get-started-modal__dialog--package {
+    width: min(100%, 975px);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000000;
+  }
+
   .get-started-modal__close {
     position: absolute;
     top: 15px;
@@ -5695,14 +5702,14 @@ html.with-fancybox .mouse-cursor {
     border: 0;
     border-radius: 50% !important;
     background: #ececec;
-    color: #4a9ae8;
+    color: #000000;
     cursor: pointer;
     transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   .get-started-modal__close:hover {
     background: #e2e2e2;
-    color: #3a8ad8;
+    color: #000000;
   }
 
   .get-started-modal__close-icon {
@@ -5715,6 +5722,10 @@ html.with-fancybox .mouse-cursor {
     display: flex;
     flex-direction: column;
     background: #f8f8f8;
+  }
+
+  .get-started-modal__dialog--package .get-started-modal__inner {
+    background: #000000;
   }
 
   .get-started-modal__media {
@@ -5737,6 +5748,11 @@ html.with-fancybox .mouse-cursor {
     background: #ffffff;
   }
 
+  .get-started-modal__dialog--package .get-started-modal__form-wrap {
+    background: #000000;
+    color: #ffffff;
+  }
+
   .get-started-modal__heading {
     margin-bottom: 1rem;
   }
@@ -5757,6 +5773,32 @@ html.with-fancybox .mouse-cursor {
     font-size: clamp(1.5rem, 4vw, 2rem);
     font-weight: 600;
     color: var(--color-dark-accent);
+  }
+
+  .get-started-modal__dialog--package .get-started-modal__title {
+    color: #ffffff;
+  }
+
+  .get-started-modal__package-price-line {
+    margin-top: 0.6rem !important;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.15;
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .get-started-modal__package-price-line span {
+    color: #ff8d4d;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+  }
+
+  .get-started-modal__package-lead {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0px !important;
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.45;
   }
 
   .get-started-modal__package {
@@ -5811,6 +5853,18 @@ html.with-fancybox .mouse-cursor {
     line-height: 1.25;
     color: #000000;
     background: #ffffff;
+  }
+
+  .get-started-modal__dialog--package .get-started-modal__field {
+    margin-bottom: 1rem;
+  }
+
+  .get-started-modal__dialog--package .get-started-modal__field input,
+  .get-started-modal__dialog--package .get-started-modal__field textarea {
+    height: 56px;
+    border: 0 !important;
+    border-radius: 4px;
+    background: #ffffff !important;
   }
 
   .get-started-modal__field input {
@@ -5896,6 +5950,20 @@ html.with-fancybox .mouse-cursor {
     cursor: not-allowed;
   }
 
+  .get-started-modal__dialog--package .get-started-modal__submit {
+    height: 59px;
+    border-radius: 4px;
+    background-color: #ff8d4d;
+    background-image: none;
+    color: #000000;
+    text-transform: none;
+  }
+
+  .get-started-modal__dialog--package .get-started-modal__submit:hover:not(:disabled),
+  .get-started-modal__dialog--package .get-started-modal__submit:focus-visible:not(:disabled) {
+    background-color: #f57a35;
+  }
+
   .get-started-modal__contact {
     margin-top: 1rem;
     font-size: 0.875rem;
@@ -5922,15 +5990,36 @@ html.with-fancybox .mouse-cursor {
       align-items: stretch;
     }
 
+    .get-started-modal__dialog--package .get-started-modal__inner {
+      flex-direction: row-reverse;
+      min-height: 520px;
+      padding: 1rem;
+      gap: 0;
+    }
+
     .get-started-modal__media {
-      width: 45%;
+      width: 50%;
       align-self: stretch;
       min-height: 0;
+    }
+
+    .get-started-modal__dialog--package .get-started-modal__media {
+      width: 50%;
+      margin: 1rem;
+      min-height: 340px;
     }
 
     .get-started-modal__form-wrap {
       width: 55%;
       padding: 3.5rem 2rem;
+    }
+
+    .get-started-modal__dialog--package .get-started-modal__form-wrap {
+      width: 46%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
   }
 

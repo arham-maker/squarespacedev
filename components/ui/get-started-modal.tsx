@@ -12,6 +12,7 @@ import {
 import { createPortal } from "react-dom";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { LEAD_FORM } from "@/lib/data/lead-form";
+import { LP2_LEAD_FORM } from "@/lib/data/lp2-lead-form";
 import {
   getFormString,
   submitForm,
@@ -149,6 +150,8 @@ export function GetStartedModal({
 
   if (!isOpen || !mounted) return null;
 
+  const modalImage = selectedPackage ? LP2_LEAD_FORM.image : LEAD_FORM.image;
+
   const modal = (
     <div className="get-started-modal" aria-hidden={false}>
       <div
@@ -163,7 +166,9 @@ export function GetStartedModal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="get-started-modal__dialog"
+        className={`get-started-modal__dialog ${
+          selectedPackage ? "get-started-modal__dialog--package" : ""
+        }`}
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -190,8 +195,8 @@ export function GetStartedModal({
         <div className="get-started-modal__inner">
           <div className="get-started-modal__media">
             <Image
-              src={LEAD_FORM.image.src}
-              alt={LEAD_FORM.image.alt}
+              src={modalImage.src}
+              alt={modalImage.alt}
               fill
               className="get-started-modal__img"
               sizes="(min-width: 768px) 45vw, 100vw"
@@ -201,10 +206,28 @@ export function GetStartedModal({
 
           <div className="get-started-modal__form-wrap">
             <div className="get-started-modal__heading" id={titleId}>
-              <h3 className="get-started-modal__title m-0">{LEAD_FORM.title}</h3>
-              <p className="get-started-modal__title-highlight m-0">
-                {LEAD_FORM.titleHighlight}
-              </p>
+              {selectedPackage ? (
+                <>
+                  <h3 className="get-started-modal__title m-0">
+                    {selectedPackage.name}
+                  </h3>
+                  <p className="get-started-modal__package-price-line m-0">
+                    In Just <span>{selectedPackage.price}</span>
+                  </p>
+                  <p className="get-started-modal__package-lead m-0">
+                    Get in touch with our experts today.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h3 className="get-started-modal__title m-0">
+                    {LEAD_FORM.title}
+                  </h3>
+                  <p className="get-started-modal__title-highlight m-0">
+                    {LEAD_FORM.titleHighlight}
+                  </p>
+                </>
+              )}
             </div>
 
             <form className="get-started-modal__form" onSubmit={handleSubmit} noValidate>
@@ -275,7 +298,7 @@ export function GetStartedModal({
                 className="get-started-modal__submit"
                 disabled={isSubmitting}
               >
-                {LEAD_FORM.submitLabel}
+                {selectedPackage ? "Get Started" : LEAD_FORM.submitLabel}
               </button>
             </form>
           </div>

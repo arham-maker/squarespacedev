@@ -6,9 +6,9 @@ export const LEAD_FORM = {
     alt: "Squarespace web design consultation",
   },
   fields: {
-    name: { placeholder: "Full Name", name: "fullName" },
-    email: { placeholder: "Email Address", name: "email" },
-    phone: { placeholder: "Phone Number", name: "phone" },
+    name: { placeholder: "Full Name *", name: "fullName" },
+    email: { placeholder: "Email Address *", name: "email" },
+    phone: { placeholder: "Phone Number *", name: "phone" },
   },
   submitLabel: "Submit",
   thankYouPath: "/thankyou",

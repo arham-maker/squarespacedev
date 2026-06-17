@@ -276,21 +276,15 @@ export function LpLeadModal({
                   />
                 </div>
 
-                <div className="fld-input">
-                  <textarea
-                    name={
-                      isLp2
-                        ? LP2_LEAD_FORM.fields.message.name
-                        : LP_LEAD_FORM.fields.industry.name
-                    }
-                    placeholder={
-                      isLp2
-                        ? LP2_LEAD_FORM.fields.message.placeholder
-                        : LP_LEAD_FORM.fields.industry.placeholder
-                    }
-                    rows={isLp2 ? 3 : 2}
-                  />
-                </div>
+                {!isLp2 ? (
+                  <div className="fld-input">
+                    <textarea
+                      name={LP_LEAD_FORM.fields.industry.name}
+                      placeholder={LP_LEAD_FORM.fields.industry.placeholder}
+                      rows={2}
+                    />
+                  </div>
+                ) : null}
 
                 {submitError ? (
                   <p className="lp-lead-modal__error" role="alert">

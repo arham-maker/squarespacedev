@@ -81,7 +81,7 @@
 }
 
 .lp-lead-modal-root .centercont p {
-  margin: 0 0 15px;
+  margin: 0 0 15px !important;
   color: #fff;
   font-size: 0.875rem;
   line-height: 1.45;

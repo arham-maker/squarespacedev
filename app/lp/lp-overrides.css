@@ -96,6 +96,10 @@ body:has(.lp-root) [type="submit"]:not(:disabled) {
   cursor: pointer;
 }
 
+.lp-root .main-header {
+  padding-top: 0 !important;
+}
+
 /* Wix Madefor Display sitewide on /lp (matches reference style.css tokens) */
 body:has(.lp-root) {
   --font-heading: "Wix Madefor Display", sans-serif;
