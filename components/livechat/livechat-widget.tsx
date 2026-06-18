@@ -25,8 +25,6 @@ window.$crisp.push(["on", "session:loaded", function() {
   }
 
   showMessage("Hello there! Are you looking to create a custom Square Space website?", 0);
-  showMessage("I'm not a bot, feel free to discuss your business requirements with me 🙂", 15000);
-  showMessage("May I know the nature of your business?\\n\\nSo I can show you some websites we have done for similar businesses", 30000);
 }]);
 window.CRISP_WEBSITE_ID = "6667cdcf-5e18-4742-a7b2-1bccade8273b";
 
