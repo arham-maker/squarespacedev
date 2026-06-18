@@ -1,38 +1,50 @@
 import Script from "next/script";
-import { LIVECHAT_LICENSE } from "@/lib/livechat";
 
-const LIVECHAT_INIT = `
-window.__lc = window.__lc || {};
-window.__lc.license = ${LIVECHAT_LICENSE};
-window.__lc.integration_name = "manual_channels";
-window.__lc.product_name = "livechat";
-;(function(n,t,c){function i(n){return e.h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+const CRISP_INIT = `
+window.$crisp = window.$crisp || [];
+window.$crisp.push(["config", "position:reverse", [false]]);
+window.$crisp.push(["on", "message:received", function(message) {
+  if (message && message.from && message.from !== "operator") return;
+  window.$crisp.push(["do", "chat:open"]);
+}]);
+window.$crisp.push(["on", "session:loaded", function() {
+  var storageKey = "squarespacedev-crisp-welcome-flow-seen";
+
+  try {
+    if (window.sessionStorage.getItem(storageKey)) return;
+    window.sessionStorage.setItem(storageKey, "1");
+  } catch (error) {
+    // Continue without persistence if browser storage is unavailable.
+  }
+
+  function showMessage(message, delay) {
+    window.setTimeout(function() {
+      window.$crisp.push(["do", "message:show", ["text", message]]);
+      window.$crisp.push(["do", "chat:open"]);
+    }, delay);
+  }
+
+  showMessage("Hello there! Are you looking to create a custom Square Space website?", 0);
+  showMessage("I'm not a bot, feel free to discuss your business requirements with me 🙂", 15000);
+  showMessage("May I know the nature of your business?\\n\\nSo I can show you some websites we have done for similar businesses", 30000);
+}]);
+window.CRISP_WEBSITE_ID = "6667cdcf-5e18-4742-a7b2-1bccade8273b";
+
+(function() {
+  var d = document;
+  var s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
 `.trim();
 
 export function LiveChatWidget() {
   return (
-    <>
-      <Script
-        id="livechat-widget"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: LIVECHAT_INIT }}
-      />
-      <noscript>
-        <a
-          href={`https://www.livechat.com/chat-with/${LIVECHAT_LICENSE}/`}
-          rel="nofollow"
-        >
-          Chat with us
-        </a>
-        , powered by{" "}
-        <a
-          href="https://www.livechat.com/?welcome"
-          rel="noopener nofollow"
-          target="_blank"
-        >
-          LiveChat
-        </a>
-      </noscript>
-    </>
+    <Script
+      id="crisp-chat-widget"
+      strategy="afterInteractive"
+      dangerouslySetInnerHTML={{ __html: CRISP_INIT }}
+    />
   );
 }
