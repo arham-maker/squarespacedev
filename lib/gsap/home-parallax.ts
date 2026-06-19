@@ -1,15 +1,6 @@
 import gsap from "gsap";
 import { createHeroParallax, initParallaxElements } from "./animations";
 
-import { MEDIA_BELOW_DESKTOP } from "@/lib/breakpoints";
-
-function getMotionScale(): number {
-  if (typeof window === "undefined") return 1;
-  return window.matchMedia(MEDIA_BELOW_DESKTOP).matches
-    ? 0.55
-    : 1;
-}
-
 /** On-load hero intro — reference AOS fade-up on banner text block */
 export function initHomeHeroIntro(
   bannerMedia: HTMLElement,
@@ -47,14 +38,14 @@ export function initHomeHeroIntro(
     {
       autoAlpha: 0,
       y: 40,
-      scale: 1.12,
+      scale: 1.03,
       transformOrigin: "center center",
       force3D: true,
     },
     {
       autoAlpha: 1,
       y: 0,
-      scale: 1.06,
+      scale: 1,
       duration: 1.35,
       ease: "power3.out",
       delay: 0.05,
@@ -69,28 +60,10 @@ export function initHomeBannerParallax(
   scrollTriggerEl: HTMLElement,
   reducedMotion: boolean
 ): void {
-  if (reducedMotion) {
-    gsap.set(media, { clearProps: "transform" });
-    return;
-  }
+  void scrollTriggerEl;
+  void reducedMotion;
 
-  const scale = getMotionScale();
-  const yPercent = 22 * scale;
-  const endScale = 1 + 0.14 * scale;
-
-  gsap.to(media, {
-    yPercent,
-    scale: endScale,
-    ease: "none",
-    force3D: true,
-    scrollTrigger: {
-      trigger: scrollTriggerEl,
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1.25,
-      invalidateOnRefresh: true,
-    },
-  });
+  gsap.set(media, { yPercent: 0, scale: 1 });
 }
 
 export function initHomePageParallax(

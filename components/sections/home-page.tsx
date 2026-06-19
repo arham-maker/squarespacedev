@@ -66,7 +66,7 @@ export function HomePage() {
         <div
           ref={bannerMediaRef}
           data-home-banner-media
-          className="absolute inset-x-0 top-[-8%] h-[116%] w-full will-change-transform"
+          className="absolute inset-x-0 top-0 h-full w-full will-change-transform"
         >
           <Image
             src="/home/home-banner.webp"
