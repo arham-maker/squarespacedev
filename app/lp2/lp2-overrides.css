@@ -2,6 +2,9 @@
 .lp2-root .mainBanner {
   min-height: clamp(520px, 72vh, 760px);
   background-color: #ebe4d8;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% auto !important;
 }
 
 .lp2-root .mainBanner .banner-content {
@@ -127,6 +130,8 @@
 @media (max-width: 767px) {
   .lp2-root .mainBanner {
     min-height: auto;
+    background-position: center center !important;
+    background-size: 100% auto !important;
   }
 
   .lp2-root .mainBanner .banner-content {
