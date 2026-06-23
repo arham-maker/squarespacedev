@@ -9,16 +9,37 @@ window.$crisp.push(["on", "message:received", function(message) {
 }]);
 window.$crisp.push(["on", "session:loaded", function() {
   var storageKey = "squarespacedev-crisp-welcome-flow-seen";
+  var memoryKey = "__squarespacedevCrispWelcomeFlowSeen";
 
-  try {
-    if (window.sessionStorage.getItem(storageKey)) return;
-    window.sessionStorage.setItem(storageKey, "1");
-  } catch (error) {
-    // Continue without persistence if browser storage is unavailable.
+  function hasSeenWelcomeMessage() {
+    try {
+      if (window[memoryKey]) return true;
+      if (window.localStorage.getItem(storageKey) === "1") return true;
+      if (window.sessionStorage.getItem(storageKey) === "1") return true;
+    } catch (error) {
+      return Boolean(window[memoryKey]);
+    }
+
+    return false;
   }
+
+  function markWelcomeMessageSeen() {
+    window[memoryKey] = true;
+
+    try {
+      window.localStorage.setItem(storageKey, "1");
+      window.sessionStorage.setItem(storageKey, "1");
+    } catch (error) {
+      // Keep the in-memory flag when browser storage is unavailable.
+    }
+  }
+
+  if (hasSeenWelcomeMessage()) return;
+  markWelcomeMessageSeen();
 
   function showMessage(message, delay) {
     window.setTimeout(function() {
+      if (!window[memoryKey]) return;
       window.$crisp.push(["do", "message:show", ["text", message]]);
       window.$crisp.push(["do", "chat:open"]);
     }, delay);
