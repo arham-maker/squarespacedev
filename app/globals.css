@@ -5537,11 +5537,18 @@ html.with-fancybox .mouse-cursor {
   /* ─── Marquee topbar ───────────────────────────────────────────────────── */
 
   .marquee-topbar {
-    position: relative;
+    /* position: relative;
     z-index: 50;
     background-color: #000000;
     color: #ffffff;
+    width: 100%; */
+    z-index: 50;
+    color: #fff;
+    background-color: #000;
     width: 100%;
+    position: relative;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
   }
 
   .marquee-topbar__viewport {
@@ -5561,8 +5568,8 @@ html.with-fancybox .mouse-cursor {
     flex-shrink: 0;
     align-items: center;
     gap: 2.5rem;
-    padding-inline: 0.25rem;
-    padding-block: 0.3rem;
+    /* padding-inline: 0.25rem;
+    padding-block: 0.3rem; */
   }
 
   .marquee-topbar__segment {
@@ -5572,7 +5579,7 @@ html.with-fancybox .mouse-cursor {
     font-family: var(--font-inter), sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: var(--text-body) !important;
+    font-size: 13px !important;
     line-height: var(--leading-nav);
     text-transform: uppercase;
   }

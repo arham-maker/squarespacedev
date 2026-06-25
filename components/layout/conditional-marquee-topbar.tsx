@@ -25,7 +25,7 @@ export function ConditionalMarqueeTopbar() {
     pathname === "/social-media" ||
     pathname === "/support" ||
     pathname === "/lp" ||
-    pathname === "/lp2"
+    pathname === "/lp3"
   ) {
     return null;
   }

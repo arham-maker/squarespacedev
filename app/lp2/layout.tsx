@@ -1,25 +1,32 @@
 import type { Metadata } from "next";
-import { Wix_Madefor_Display } from "next/font/google";
-import "../lp/lp-overrides.css";
-import "../lp/lp-lead-modal.css";
-
-const wixMadeforDisplay = Wix_Madefor_Display({
-  subsets: ["latin"],
-  display: "swap",
-});
+import Script from "next/script";
+import { Lp2LiveChatClicks } from "./lp2-live-chat-clicks";
 
 export const metadata: Metadata = {
-  title: "Hire a Squarespace Website Designer | Squarespacedev",
+  title:
+    "Struggling to Find a Squarespace Designer? Hire a Pro for a Stunning Site!",
   description:
-    "Find a professional Squarespace designer to build or redesign your website. Custom Squarespace website design by expert developers.",
+    "Hire a Squarespace website designer in the USA for custom design, redesign, ecommerce, memberships, SEO, support, and conversion-focused Squarespace development.",
 };
 
 export default function Lp2Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={wixMadeforDisplay.className}>
-      <link rel="stylesheet" href="/lp/assets/css/layout.css" />
-      <link rel="stylesheet" href="/lp/assets/css/style.css" />
+    <div>
+      <link rel="stylesheet" href="/lp2/assets/css/layout.css" />
+      <link rel="stylesheet" href="/lp2/assets/css/style.css" />
       {children}
+      <Lp2LiveChatClicks />
+      <Script src="/lp2/assets/js/jquery.js" strategy="afterInteractive" />
+      <Script src="/lp2/assets/js/custom.js" strategy="afterInteractive" />
+      <Script id="lp2-livechat" strategy="afterInteractive">
+        {`
+          function setButtonURL() {
+            window.$crisp = window.$crisp || [];
+            window.$crisp.push(["do", "chat:open"]);
+          }
+          window.setButtonURL = setButtonURL;
+        `}
+      </Script>
     </div>
   );
 }

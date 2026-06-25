@@ -10,7 +10,7 @@ export function MouseCursor() {
   const pathname = usePathname();
   const reducedMotion = usePrefersReducedMotion();
   const [mounted, setMounted] = useState(false);
-  const isLp = pathname === "/lp" || pathname === "/lp2";
+  const isLp = pathname === "/lp" || pathname === "/lp3";
 
   useEffect(() => {
     setMounted(true);
