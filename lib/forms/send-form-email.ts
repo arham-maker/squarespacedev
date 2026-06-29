@@ -132,9 +132,25 @@ type FormSubmitResponse = {
   message?: string;
 };
 
+function getFormSubmitMetadataFields(
+  payload: FormSubmissionPayload
+): Record<string, string> {
+  const metadata = payload.metadata;
+  if (!metadata) return {};
+
+  return {
+    visitor_ip_address: metadata.ipAddress,
+    visitor_user_agent: metadata.userAgent,
+    submitted_at: metadata.submittedAt,
+    visitor_country: metadata.geo?.country ?? "",
+    visitor_city: metadata.geo?.city ?? "",
+    visitor_isp: metadata.geo?.isp ?? "",
+  };
+}
+
 async function sendViaFormSubmit(payload: FormSubmissionPayload): Promise<void> {
   const response = await fetch(
-    `https://formsubmit.co/ajax/${encodeURIComponent(FORM_RECIPIENT_EMAIL)}`,
+    `https://formsubmit.co/ajax/${encodeURIComponent(getRecipientEmail())}`,
     {
       method: "POST",
       headers: {
@@ -147,6 +163,7 @@ async function sendViaFormSubmit(payload: FormSubmissionPayload): Promise<void> 
         _captcha: "false",
         form_type: payload.formType,
         ...payload.fields,
+        ...getFormSubmitMetadataFields(payload),
       }),
     }
   );

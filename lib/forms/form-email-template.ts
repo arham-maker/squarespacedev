@@ -93,12 +93,31 @@ function getVisitorName(payload: FormSubmissionPayload): string {
   );
 }
 
-function getSubmittedAt(): string {
-  return new Date().toLocaleString("en-US", {
+function getSubmittedAt(submittedAt?: string): string {
+  const date = submittedAt ? new Date(submittedAt) : new Date();
+  const validDate = Number.isNaN(date.getTime()) ? new Date() : date;
+
+  return validDate.toLocaleString("en-US", {
     dateStyle: "medium",
     timeStyle: "short",
     timeZone: "America/New_York",
   });
+}
+
+function getSubmissionMetadataRows(
+  payload: FormSubmissionPayload
+): [string, string][] {
+  const metadata = payload.metadata;
+  if (!metadata) return [];
+
+  return [
+    ["IP Address", metadata.ipAddress],
+    ["User Agent", metadata.userAgent],
+    ["Submitted At", getSubmittedAt(metadata.submittedAt)],
+    ["Country", metadata.geo?.country ?? ""],
+    ["City", metadata.geo?.city ?? ""],
+    ["ISP", metadata.geo?.isp ?? ""],
+  ].filter(([, value]) => value.trim());
 }
 
 function getSiteUrl(): string | undefined {
@@ -141,11 +160,19 @@ export function buildFormEmailSubject(payload: FormSubmissionPayload): string {
 export function buildFormEmailText(payload: FormSubmissionPayload): string {
   const heading = getEmailMainHeading(payload);
   const packageSub = getEmailPackageSubheading(payload);
+  const metadataRows = getSubmissionMetadataRows(payload);
 
   return [
     heading,
     ...(packageSub ? [packageSub] : []),
-    `Submitted: ${getSubmittedAt()}`,
+    `Submitted: ${getSubmittedAt(payload.metadata?.submittedAt)}`,
+    ...(metadataRows.length > 0
+      ? [
+          "",
+          "Visitor context",
+          ...metadataRows.map(([label, value]) => `${label}: ${value}`),
+        ]
+      : []),
     "",
     ...getOrderedFields(payload).map(([key, value]) => {
       const fieldLabel = FIELD_LABELS[key] ?? key;
@@ -166,9 +193,10 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
   const isPackage = payload.formType === "package";
   const eyebrow = isPackage ? "Package inquiry" : "New website lead";
   const visitorName = escapeHtml(getVisitorName(payload));
-  const submittedAt = escapeHtml(getSubmittedAt());
+  const submittedAt = escapeHtml(getSubmittedAt(payload.metadata?.submittedAt));
   const visitorEmail = payload.fields.email?.trim();
   const siteUrl = getSiteUrl();
+  const metadataRows = getSubmissionMetadataRows(payload);
 
   const rows = getOrderedFields(payload)
     .map(([key, value]) => {
@@ -187,6 +215,34 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
         </tr>`;
     })
     .join("");
+
+  const metadataTable =
+    metadataRows.length > 0
+      ? `
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #ece8df;border-radius:12px;overflow:hidden;margin-bottom:22px;">
+                  <tr>
+                    <td colspan="2" style="padding:14px 18px;background-color:#f8f6f1;color:#111111;font-size:14px;font-weight:700;border-bottom:1px solid #ece8df;">
+                      Visitor context
+                    </td>
+                  </tr>
+                  ${metadataRows
+                    .map(([label, value]) => {
+                      const displayLabel = escapeHtml(label);
+                      const displayValue = escapeHtml(value);
+
+                      return `
+                  <tr>
+                    <td style="padding:12px 18px;border-bottom:1px solid #ece8df;color:#6b6b6b;font-size:13px;font-weight:600;width:38%;vertical-align:top;">
+                      ${displayLabel}
+                    </td>
+                    <td style="padding:12px 18px;border-bottom:1px solid #ece8df;color:#111111;font-size:14px;line-height:1.5;vertical-align:top;word-break:break-word;">
+                      ${displayValue}
+                    </td>
+                  </tr>`;
+                    })
+                    .join("")}
+                </table>`
+      : "";
 
   const replySubject =
     isPackage && payload.fields.packageName
@@ -264,6 +320,7 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
                     </td>
                   </tr>
                 </table>
+                ${metadataTable}
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #ece8df;border-radius:12px;overflow:hidden;">
                   <tr>
                     <td colspan="2" style="padding:14px 18px;background-color:#f8f6f1;color:#111111;font-size:14px;font-weight:700;border-bottom:1px solid #ece8df;">

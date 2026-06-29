@@ -1,4 +1,5 @@
 import { sendFormEmail } from "@/lib/forms/send-form-email";
+import { buildSubmissionMetadata } from "@/lib/forms/submission-metadata";
 import type { FormSubmissionPayload } from "@/lib/forms/types";
 
 function isValidPayload(body: unknown): body is FormSubmissionPayload {
@@ -36,7 +37,8 @@ export async function POST(request: Request) {
       return Response.json({ error: "Email is required." }, { status: 400 });
     }
 
-    await sendFormEmail(body);
+    const metadata = await buildSubmissionMetadata(request);
+    await sendFormEmail({ ...body, metadata });
 
     return Response.json({ ok: true });
   } catch (error) {
