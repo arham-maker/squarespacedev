@@ -110,14 +110,16 @@ function getSubmissionMetadataRows(
   const metadata = payload.metadata;
   if (!metadata) return [];
 
-  return [
+  const rows: [string, string][] = [
     ["IP Address", metadata.ipAddress],
     ["User Agent", metadata.userAgent],
     ["Submitted At", getSubmittedAt(metadata.submittedAt)],
     ["Country", metadata.geo?.country ?? ""],
     ["City", metadata.geo?.city ?? ""],
     ["ISP", metadata.geo?.isp ?? ""],
-  ].filter(([, value]) => value.trim());
+  ];
+
+  return rows.filter(([, value]) => value.trim());
 }
 
 function getSiteUrl(): string | undefined {
