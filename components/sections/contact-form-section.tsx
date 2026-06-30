@@ -54,6 +54,7 @@ export function ContactFormSection() {
           phone: getFormString(formData, "phone"),
           email: getFormString(formData, "email"),
           message: getFormString(formData, "message"),
+          pageUrl: window.location.href,
           consentMarketing: getFormCheckbox(formData, "contact-consent-marketing"),
           consentSms: getFormCheckbox(formData, "contact-consent-sms"),
           consentTerms: getFormCheckbox(formData, "contact-consent-terms"),

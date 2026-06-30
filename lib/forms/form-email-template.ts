@@ -13,6 +13,7 @@ const FIELD_LABELS: Record<string, string> = {
   email: "Email Address",
   phone: "Phone Number",
   message: "Message",
+  pageUrl: "Page URL",
   consentMarketing: "Marketing Consent",
   consentSms: "SMS Consent",
   consentTerms: "Terms Accepted",
