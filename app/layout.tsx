@@ -30,6 +30,13 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col font-sans">
         <Script
+          id="zendesk-settings"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.zESettings = { webWidget: { zIndex: 999999 } };`,
+          }}
+        />
+        <Script
           id="bing-uet"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
@@ -42,10 +49,10 @@ export default function RootLayout({
             <SmoothScrollProvider>
               {children}
               <MouseCursor />
-              <ZendeskWidget />
             </SmoothScrollProvider>
           </LeadFormProvider>
         </GsapProvider>
+        <ZendeskWidget />
       </body>
     </html>
   );
