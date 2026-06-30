@@ -18,15 +18,6 @@ export default function Lp2Layout({ children }: { children: React.ReactNode }) {
       <Lp2LiveChatClicks />
       <Script src="/lp2/assets/js/jquery.js" strategy="afterInteractive" />
       <Script src="/lp2/assets/js/custom.js" strategy="afterInteractive" />
-      <Script id="lp2-livechat" strategy="afterInteractive">
-        {`
-          function setButtonURL() {
-            window.$crisp = window.$crisp || [];
-            window.$crisp.push(["do", "chat:open"]);
-          }
-          window.setButtonURL = setButtonURL;
-        `}
-      </Script>
     </div>
   );
 }

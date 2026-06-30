@@ -1,12 +1,16 @@
-type CrispCommand = [string, string, unknown?];
+function openZendeskMessenger(attempt = 0) {
+  if (typeof window === "undefined") return;
 
-function pushCrispCommand(command: CrispCommand) {
-  window.$crisp = window.$crisp || [];
-  window.$crisp.push(command);
+  if (window.zE) {
+    window.zE("messenger", "open");
+    return;
+  }
+
+  if (attempt >= 20) return;
+
+  window.setTimeout(() => openZendeskMessenger(attempt + 1), 100);
 }
 
 export function openLiveChat() {
-  if (typeof window === "undefined") return;
-
-  pushCrispCommand(["do", "chat:open"]);
+  openZendeskMessenger();
 }

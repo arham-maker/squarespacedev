@@ -5,7 +5,7 @@ import { ConditionalMarqueeTopbar } from "@/components/layout/conditional-marque
 import { LeadFormProvider } from "@/components/providers/lead-form-provider";
 import { GsapProvider } from "@/components/providers/gsap-provider";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-import { LiveChatWidget } from "@/components/livechat/livechat-widget";
+import { ZendeskWidget } from "@/components/livechat/zendesk-widget";
 import { MouseCursor } from "@/components/ui/mouse-cursor";
 import "./globals.css";
 
@@ -42,7 +42,7 @@ export default function RootLayout({
             <SmoothScrollProvider>
               {children}
               <MouseCursor />
-              <LiveChatWidget />
+              <ZendeskWidget />
             </SmoothScrollProvider>
           </LeadFormProvider>
         </GsapProvider>
