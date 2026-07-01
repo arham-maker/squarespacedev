@@ -13,7 +13,7 @@ const FIELD_LABELS: Record<string, string> = {
   email: "Email Address",
   phone: "Phone Number",
   message: "Message",
-  pageUrl: "Page URL",
+  pageUrl: "Page-Url",
   consentMarketing: "Marketing Consent",
   consentSms: "SMS Consent",
   consentTerms: "Terms Accepted",
@@ -105,6 +105,17 @@ function getSubmittedAt(submittedAt?: string): string {
   });
 }
 
+function getPageUrl(payload: FormSubmissionPayload): string | null {
+  const pageUrl = payload.fields.pageUrl?.trim();
+  return pageUrl || null;
+}
+
+function getSubmissionFieldRows(
+  payload: FormSubmissionPayload
+): [string, string][] {
+  return getOrderedFields(payload).filter(([key]) => key !== "pageUrl");
+}
+
 function getSubmissionMetadataRows(
   payload: FormSubmissionPayload
 ): [string, string][] {
@@ -164,23 +175,27 @@ export function buildFormEmailText(payload: FormSubmissionPayload): string {
   const heading = getEmailMainHeading(payload);
   const packageSub = getEmailPackageSubheading(payload);
   const metadataRows = getSubmissionMetadataRows(payload);
+  const pageUrl = getPageUrl(payload);
 
   return [
     heading,
     ...(packageSub ? [packageSub] : []),
     `Submitted: ${getSubmittedAt(payload.metadata?.submittedAt)}`,
-    ...(metadataRows.length > 0
-      ? [
-          "",
-          "Visitor context",
-          ...metadataRows.map(([label, value]) => `${label}: ${value}`),
-        ]
-      : []),
     "",
-    ...getOrderedFields(payload).map(([key, value]) => {
+    ...getSubmissionFieldRows(payload).map(([key, value]) => {
       const fieldLabel = FIELD_LABELS[key] ?? key;
       return `${fieldLabel}: ${value}`;
     }),
+    ...(pageUrl
+      ? ["", "Location", `Page-Url: ${pageUrl}`]
+      : []),
+    ...(metadataRows.length > 0
+      ? [
+          "",
+          "User Location Details",
+          ...metadataRows.map(([label, value]) => `${label}: ${value}`),
+        ]
+      : []),
     "",
     `Reply to: ${payload.fields.email || "—"}`,
   ].join("\n");
@@ -200,8 +215,9 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
   const visitorEmail = payload.fields.email?.trim();
   const siteUrl = getSiteUrl();
   const metadataRows = getSubmissionMetadataRows(payload);
+  const pageUrl = getPageUrl(payload);
 
-  const rows = getOrderedFields(payload)
+  const rows = getSubmissionFieldRows(payload)
     .map(([key, value]) => {
       const label = escapeHtml(FIELD_LABELS[key] ?? key);
       const displayValue = escapeHtml(value || "—");
@@ -225,7 +241,7 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
                 <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #ece8df;border-radius:12px;overflow:hidden;margin-bottom:22px;">
                   <tr>
                     <td colspan="2" style="padding:14px 18px;background-color:#f8f6f1;color:#111111;font-size:14px;font-weight:700;border-bottom:1px solid #ece8df;">
-                      Visitor context
+                      User Location Details
                     </td>
                   </tr>
                   ${metadataRows
@@ -246,6 +262,25 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
                     .join("")}
                 </table>`
       : "";
+
+  const locationTable = pageUrl
+    ? `
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #ece8df;border-radius:12px;overflow:hidden;margin-bottom:22px;">
+                  <tr>
+                    <td colspan="2" style="padding:14px 18px;background-color:#f8f6f1;color:#111111;font-size:14px;font-weight:700;border-bottom:1px solid #ece8df;">
+                      Location
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:12px 18px;border-bottom:1px solid #ece8df;color:#6b6b6b;font-size:13px;font-weight:600;width:38%;vertical-align:top;">
+                      Page-Url
+                    </td>
+                    <td style="padding:12px 18px;border-bottom:1px solid #ece8df;color:#111111;font-size:14px;line-height:1.5;vertical-align:top;word-break:break-word;">
+                      <a href="${escapeHtml(pageUrl)}" style="color:#1d4ed8;text-decoration:underline;">${escapeHtml(pageUrl)}</a>
+                    </td>
+                  </tr>
+                </table>`
+    : "";
 
   const replySubject =
     isPackage && payload.fields.packageName
@@ -323,8 +358,7 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
                     </td>
                   </tr>
                 </table>
-                ${metadataTable}
-                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #ece8df;border-radius:12px;overflow:hidden;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #ece8df;border-radius:12px;overflow:hidden;margin-bottom:22px;">
                   <tr>
                     <td colspan="2" style="padding:14px 18px;background-color:#f8f6f1;color:#111111;font-size:14px;font-weight:700;border-bottom:1px solid #ece8df;">
                       ${isPackage ? "Contact &amp; package details" : "Submission details"}
@@ -332,6 +366,8 @@ export function buildFormEmailHtml(payload: FormSubmissionPayload): string {
                   </tr>
                   ${rows}
                 </table>
+                ${locationTable}
+                ${metadataTable}
               </td>
             </tr>
             <tr>

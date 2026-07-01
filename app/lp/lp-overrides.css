@@ -100,6 +100,18 @@ body:has(.lp-root) [type="submit"]:not(:disabled) {
   padding-top: 0 !important;
 }
 
+.lp-root .mainBanner {
+  background-color: transparent;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.lp-root .mainBanner header,
+.lp-root .main-header {
+  background: transparent !important;
+}
+
 /* Wix Madefor Display sitewide on /lp (matches reference style.css tokens) */
 body:has(.lp-root) {
   --font-heading: "Wix Madefor Display", sans-serif;

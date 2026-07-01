@@ -24,7 +24,6 @@ export function ConditionalMarqueeTopbar() {
     pathname === "/your-all-in-one" ||
     pathname === "/social-media" ||
     pathname === "/support" ||
-    pathname === "/lp" ||
     pathname === "/lp3"
   ) {
     return null;

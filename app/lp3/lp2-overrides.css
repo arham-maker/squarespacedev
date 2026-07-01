@@ -1,10 +1,15 @@
 /* Hero: reserve space and stay visible before AOS / assets hydrate */
 .lp2-root .mainBanner {
   min-height: clamp(520px, 72vh, 760px);
-  background-color: #ebe4d8;
-  background-position: center center !important;
+  background-color: transparent;
+  background-position: left center !important;
   background-repeat: no-repeat !important;
-  background-size: 100% auto !important;
+  background-size: cover !important;
+}
+
+.lp2-root .mainBanner header,
+.lp2-root .main-header {
+  background: transparent !important;
 }
 
 .lp2-root .mainBanner .banner-content {
@@ -130,8 +135,8 @@
 @media (max-width: 767px) {
   .lp2-root .mainBanner {
     min-height: auto;
-    background-position: center center !important;
-    background-size: 100% auto !important;
+    background-position: left center !important;
+    background-size: cover !important;
   }
 
   .lp2-root .mainBanner .banner-content {
