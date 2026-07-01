@@ -1,7 +1,6 @@
 export const ZENDESK_WIDGET_SRC =
   "https://static.zdassets.com/ekr/snippet.js?key=923e51fa-97d5-49a2-9055-0fb23e466aba";
 
-let isWidgetOpen = false;
 let listenersRegistered = false;
 
 function showZendeskWidget() {
@@ -59,25 +58,20 @@ export function setupZendeskAgentReplyListener(): () => void {
 
     try {
       unsubscribers.push(
-        window.zE!("webWidget:on", "open", () => {
-          isWidgetOpen = true;
-        })
-      );
-
-      unsubscribers.push(
         window.zE!("webWidget:on", "close", () => {
-          isWidgetOpen = false;
+          // Keep the launcher visible after minimize.
+          showZendeskWidget();
         })
       );
 
-      let previousUnreadCount = 0;
       unsubscribers.push(
         window.zE!("webWidget:on", "chat:unreadMessages", (count) => {
-          if (count > previousUnreadCount && !isWidgetOpen) {
+          // Reopen whenever there are unread messages. Comparing against a
+          // previous count misses replies when Zendesk keeps the same count
+          // (e.g. user minimized with 1 unread already pending).
+          if (count > 0) {
             openZendeskWidget();
           }
-
-          previousUnreadCount = count;
         })
       );
     } catch (error) {
@@ -88,7 +82,6 @@ export function setupZendeskAgentReplyListener(): () => void {
     return () => {
       unsubscribers.forEach((unsubscribe) => unsubscribe());
       listenersRegistered = false;
-      isWidgetOpen = false;
     };
   });
 }
