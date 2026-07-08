@@ -4,6 +4,7 @@ export const SITE = {
   phoneHref: "tel:+16822670492",
   email: "support@squarespacedev.com",
   emailHref: "mailto:support@squarespacedev.com",
+  addressLines: ["1001 W Euless Blvd.", "Euless, TX 76040"] as const,
   logoBlack: "/Square Space Dev Logo V3 Black.png",
   logoWhite: "/Square Space Dev Logo V3 White.png",
 } as const;

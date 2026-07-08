@@ -2135,6 +2135,20 @@ html.with-fancybox .mouse-cursor {
     color: #ffffff;
   }
 
+  .contact-address {
+    color: #000000;
+  }
+
+  .contact-address__icon {
+    font-size: 1.375rem;
+  }
+
+  .contact-address__text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+
   .nav-link--active {
     opacity: 1;
     text-decoration: underline;
@@ -2712,7 +2726,6 @@ html.with-fancybox .mouse-cursor {
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: 0.02em;
-    text-wrap: balance;
   }
 
   @media (min-width: 768px) {
@@ -2724,6 +2737,9 @@ html.with-fancybox .mouse-cursor {
   @media (min-width: 1025px) {
     .pricing-partners-section__heading {
       margin-bottom: 3rem;
+      font-size: 70px;
+      line-height: 1.15;
+      white-space: nowrap;
     }
   }
 

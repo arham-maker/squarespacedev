@@ -1,5 +1,10 @@
 type ZendeskWebWidgetAction = "open" | "close" | "show" | "hide";
 
+type ZendeskUserEvent = {
+  action?: string;
+  [key: string]: unknown;
+};
+
 type ZendeskApi = {
   (command: "webWidget", action: ZendeskWebWidgetAction): void;
   (
@@ -13,6 +18,11 @@ type ZendeskApi = {
     callback: (count: number) => void
   ): () => void;
   (
+    command: "webWidget:on",
+    event: "userEvent",
+    callback: (userEvent: ZendeskUserEvent) => void
+  ): () => void;
+  (
     command: "webWidget:get",
     property: "display"
   ): string;
@@ -24,6 +34,10 @@ declare global {
     zESettings?: {
       webWidget?: {
         zIndex?: number;
+        offset?: {
+          horizontal?: string;
+          vertical?: string;
+        };
       };
     };
   }

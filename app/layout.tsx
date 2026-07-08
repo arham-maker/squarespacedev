@@ -33,7 +33,7 @@ export default function RootLayout({
           id="zendesk-settings"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `window.zESettings = { webWidget: { zIndex: 999999 } };`,
+            __html: `window.zESettings = { webWidget: { zIndex: 999999, offset: { horizontal: "20px", vertical: "20px" } } };`,
           }}
         />
         <Script

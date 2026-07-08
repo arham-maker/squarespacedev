@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useLayoutEffect, useRef, useState, type FormEvent } from "react";
-import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { Container } from "@/components/layout/container";
 import { usePrefersReducedMotion } from "@/hooks/use-prefers-reduced-motion";
 import { CONTACT_FORM, CONTACT_PARTNER_LOGOS } from "@/lib/data/contact";
@@ -242,6 +242,23 @@ export function ContactFormSection() {
               <FaEnvelope className="shrink-0 text-xl" aria-hidden />
               <span>{SITE.email}</span>
             </a>
+          </div>
+
+          <div
+            data-contact-reveal
+            className="contact-address mx-auto mt-6 flex max-w-[900px] items-start justify-center gap-3 text-center lg:mt-8"
+          >
+            <FaMapMarkerAlt
+              className="contact-address__icon mt-1 shrink-0"
+              aria-hidden
+            />
+            <p className="contact-address__text m-0">
+              {SITE.addressLines.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </p>
           </div>
         </Container>
       </div>

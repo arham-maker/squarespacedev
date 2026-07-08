@@ -92,11 +92,9 @@ export function PricingTrustedPartnersSection() {
           data-scroll-heading
           className="pricing-partners-section__heading section-heading text-center"
         >
-          {PRICING_TRUSTED_PARTNERS.titleLines.map((line) => (
-            <span key={line} className="block" data-scroll-heading-line>
-              {line}
-            </span>
-          ))}
+          <span data-scroll-heading-line>
+            {PRICING_TRUSTED_PARTNERS.title}
+          </span>
         </h2>
       </Container>
 

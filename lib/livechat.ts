@@ -2,14 +2,41 @@ export const ZENDESK_WIDGET_SRC =
   "https://static.zdassets.com/ekr/snippet.js?key=923e51fa-97d5-49a2-9055-0fb23e466aba";
 
 let listenersRegistered = false;
+let launcherRestoreTimer: number | undefined;
 
 function showZendeskWidget() {
   window.zE?.("webWidget", "show");
 }
 
 function openZendeskWidget() {
+  if (launcherRestoreTimer) {
+    window.clearTimeout(launcherRestoreTimer);
+    launcherRestoreTimer = undefined;
+  }
+
   showZendeskWidget();
   window.zE?.("webWidget", "open");
+}
+
+/** Keep the bottom-right launcher bubble visible after minimize. */
+function restoreLauncherBubble() {
+  showZendeskWidget();
+
+  // Zendesk can finish closing after the close event; re-show once settled.
+  if (launcherRestoreTimer) window.clearTimeout(launcherRestoreTimer);
+  launcherRestoreTimer = window.setTimeout(() => {
+    showZendeskWidget();
+    launcherRestoreTimer = undefined;
+  }, 150);
+}
+
+function isMinimizeUserEvent(userEvent: { action?: string }): boolean {
+  const action = userEvent.action?.toLowerCase() ?? "";
+  return (
+    action.includes("minimised") ||
+    action.includes("minimized") ||
+    action.includes("web widget closed")
+  );
 }
 
 export function runWhenWebWidgetReady(
@@ -59,8 +86,15 @@ export function setupZendeskAgentReplyListener(): () => void {
     try {
       unsubscribers.push(
         window.zE!("webWidget:on", "close", () => {
-          // Keep the launcher visible after minimize.
-          showZendeskWidget();
+          restoreLauncherBubble();
+        })
+      );
+
+      unsubscribers.push(
+        window.zE!("webWidget:on", "userEvent", (userEvent) => {
+          if (isMinimizeUserEvent(userEvent)) {
+            restoreLauncherBubble();
+          }
         })
       );
 
@@ -80,6 +114,10 @@ export function setupZendeskAgentReplyListener(): () => void {
     }
 
     return () => {
+      if (launcherRestoreTimer) {
+        window.clearTimeout(launcherRestoreTimer);
+        launcherRestoreTimer = undefined;
+      }
       unsubscribers.forEach((unsubscribe) => unsubscribe());
       listenersRegistered = false;
     };
