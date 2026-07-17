@@ -37,6 +37,21 @@ export default function RootLayout({
           }}
         />
         <Script
+          id="google-gtag"
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18251876752"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-gtag-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'AW-18251876752');`,
+          }}
+        />
+        <Script
           id="bing-uet"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
