@@ -42,13 +42,17 @@ export function PricingCard({
         </p>
       </div>
       <div ref={bodyRef} className="pricing-card__body">
-        <p className="pricing-card__desc">{plan.description}</p>
+        {plan.description ? (
+          <p className="pricing-card__desc">{plan.description}</p>
+        ) : null}
         <ul ref={featuresRef} className="pricing-card__features">
           {plan.features.map((feature) => (
             <li
               key={feature}
               className={
-                feature.startsWith("Everything in") ? "pricing-card__feature-heading" : ""
+                /^(includes\s+)?everything in/i.test(feature)
+                  ? "pricing-card__feature-heading"
+                  : ""
               }
             >
               <FaCheck className="pricing-card__check shrink-0" aria-hidden />
